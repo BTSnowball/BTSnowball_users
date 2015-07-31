@@ -1,0 +1,9 @@
+首先先去windid后台注册一个叫BTSnowballUsers的应用
+1、将BTSUhand目录整体放入目标程序的根目录下。（包含/BTSUHand/，确保该目录和btsuser目录同级)
+2、配置windid配置文件\BTSUHand\windid_client\conf\config.php和\BTSUHand\windid_client\conf\database.php.当然也可以直接把您的windid_client覆盖过来。
+3、配置BTSUHand配置文件/BTSUHand/config/handconfig.php和/BTSUHand/config/MYSQL_Config.php
+4、如果您在运行phpwind9.0.1请将/BTSUHand/config/handconfig.php中的$IsDiscuz值设为1如果不是在运行phpwind请设置为0.
+5、将/phpwind9.0.1_fg/文件夹下的文件直接覆盖到DISCUZ!X根目录下，注意不带/phpwind9.0.1_fg/目录。
+6、测试运行。
+
+有任何问题请来WWW.BTSNOWBALL.ORG询问。这是一款社区产品

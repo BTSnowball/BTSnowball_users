@@ -1,0 +1,13 @@
+    首先非常感谢来参与BTSnowball_Users_V0.7.X.X_Alpha版的测试、发布，我们也非常欢迎您加入我们的社区和我们一起研发和推动BTSnowball前进。本程序可以和任何程序整合，为您的网站/应用/服务开启对BTSnowball_Users协议的支持。我们的首页是http://www.btsnowball.org
+*注：本程序是Alpha版，Alpha版已经可以运行了，但一般还没完全完成测试、开发和调试过程。
+安装说明：
+准备：确认您的环境支持PHP(建议5.2+推荐5.4）MYSQL。确认您的程序是不允许用户email地址重复的或能够很好的处理重复email地址用户名之间的关系。
+①、将/btsuser/文件夹整体除了/DOC/文件夹下的所有文件上传到您的主程序的根目录下。
+②、为BTSnowball_Users建立一个空的数据库或清空一个数据库。
+③、打开http://您的访问地址/btsuser/install/ 安装说明进行配置。
+④、运行数据库写入文件，或手动将/install/include/insatll.sql导入预先准备的数据库中。
+⑤、（非必要，但建议执行方便您能更快的发现其它节点同时其它节点也能更快的发现您）执行站云同步文件，或到http://www.btsnowball.org站云栏目提交您的网站到站云。如果是仅测试请在提交时注明仅测试，正式运行需重新提交。
+⑥、测试运行。BTSnowball_Users登陆启动页面是Ilogin.php。 后台管理是loginadmin.php 用户名：admin 密码：btsuadmin 请第一时间更改管理密码。用户后台是loginme.php
+*S2S_...
+
+如有任何问题，欢迎来到http://www.btsnowball.org与我联系。

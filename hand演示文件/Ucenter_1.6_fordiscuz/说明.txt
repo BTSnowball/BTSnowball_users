@@ -1,0 +1,9 @@
+首先先去Ucenter后台注册一个名为BTSnowballUsers的应用
+1、将BTSUhand目录整体放入目标程序的根目录下。（包含/BTSUHand/，确保该目录和btsuser目录同级)
+2、配置Ucenter配置文件/BTSUHand/config.inc.php和/BTSUHand/config_ucenter.php
+3、配置BTSUHand配置文件/BTSUHand/config/handconfig.php和/BTSUHand/config/MYSQL_Config.php
+4、如果您在运行DISCUZ!X请将/BTSUHand/config/handconfig.php中的$IsDiscuz值设为1如果不是在运行DISCUZ!X请设置为0.
+5、将/DISCUZ_X3.2+-/文件夹下的文件直接覆盖到DISCUZ!X根目录下，注意不带/DISCUZ_X3.2+-/目录。
+6、测试运行。
+
+有任何问题请来WWW.BTSNOWBALL.ORG询问。这是一款社区产品

@@ -1,0 +1,38 @@
+﻿BTSnowball_Users遵循Apache2开源协议发布，并提供免费使用。
+版权所有Copyright  林友哲 BTSnowball.Org.林友哲是BTSnowball的作者，社区的创办人，BTSnowball.Org地址就是社区的官方网址。
+
+
+相关知识产权也根据相应的授权协议免费提供使用，请阅读相应的授权协议。——————————————————————————
+
+Apache Licence是著名的非盈利开源组织Apache采用的协议。
+该协议和BSD类似，鼓励代码共享和尊重原作者的著作权，
+允许代码修改，再作为开源或商业软件发布。需要满足
+的条件： 
+1． 需要给代码的用户一份Apache Licence ；
+2． 如果你修改了代码，需要在被修改的文件中说明；
+3． 在延伸的代码中（修改和有源代码衍生的代码中）需要
+带有原来代码中的协议，商标，专利声明和其他原来作者规
+定需要包含的说明；
+4． 如果再发布的产品中包含一个Notice文件，则在Notice文
+件中需要带有本协议内容。你可以在Notice中增加自己的
+许可，但不可以表现为对Apache Licence构成更改。 
+具体的协议参考：http://www.apache.org/licenses/LICENSE-2.0
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
+——————————————————————————根据
+
+Apache Licence。本次发布的作品具有一个Notice文件，其名为BTSpl.txt和本文件位于同一目录下，该文件内容是补充的条款，不得更改，同时该文件也必须在各再发布产品\作品中携带且不得更改，并具有相同要求。
+——————————————————————————主目录/DOC/文档文件并不适用本授权。这些文档并不在公共领域，是版权所有的，文档文件的授权请参照相关授权文件。
+——————————————————————————其它知识产权的授权协议请参照相应的授权协议。
+——————————————————————————开源环境需要你我共同贡献共同维护。BTSnowball.Org

@@ -1,0 +1,4 @@
+这个Hand程序教学意义大于实用意义，它是作者在编写这套软件初期时写的第一个Hand和BTSUSER主程序同步开发试验的。所以代码跨度非常的大，但是思路都融合在这里了。
+您只需把/BTSUHand/目录整体放在phpsay1.2.2目录下，并配置好/BTSUHand/config/handconfig.php和MySQL_CONFIG.php即可
+
+如有任何问题请来btsnowball.org和我们联系

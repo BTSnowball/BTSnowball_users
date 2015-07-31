@@ -1,0 +1,148 @@
+<?php
+/*
++BTSnowball_Users!
++BTSnowball.Org社区欢迎您的加入
++本作品遵循Apache lincense V2.0并补充有BTSpl。具体请参见lincense&txt文件夹下相关文件
++Copyright (c) 2015 版权所属于相应代码的作者、贡献人和BTSnowball_Org社区相关人员
++ Author list:林友哲(Lin Youzhe)
+*/
+session_start();
+?>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<?
+include_once('run.php');
+$pluswz='Mybtsuh';
+include('btsuplus.php');
+$Ucktg='2';
+$CUset='2';
+if(isset($_COOKIE['MYusername'],$_COOKIE['MYdate'],$_COOKIE['ckeya'],$_COOKIE['ckeyb'])){
+  if($_COOKIE['MYdate']!='BTSuserUnSet'){
+	$MYCKre=CKucookie($_COOKIE['ckeya'],$_COOKIE['ckeyb'],$_COOKIE['MYusername']);
+	if($MYCKre['jg']=='success'){
+		$Nowdate=time();
+		$datebf=$Nowdate-$MYCKre['date'];
+		if($datebf<=604800){
+			$Ucktg='1';
+		}else{
+			$CUset='1';
+		}
+	}else{
+			$CUset='1';
+	}
+  }else{
+			$CUset='1';
+  }
+}else{
+			$CUset='1';
+}
+if($CUset=='1'){
+	setcookie('ckeya','',time()-7200);
+	setcookie("ckeyb",'',time()-7200);
+	setcookie("MYusername",'',time()-7200);
+	setcookie("MYdate",'BTSuserUnSet',time()-7200);
+}
+if(!isset($_SESSION['MyBtsuLI'])){
+	$doyz='1';
+}else{
+	if($_SESSION['MyBtsuLI']=='1'){
+		$doyz='2';
+	}else{
+		$doyz='1';
+	}
+}
+if($doyz=='1' && $Ucktg=='1'){
+	$_SESSION['MyBtsuLI']='1';
+	$_SESSION['MyUsername']=$MYCKre['user'];
+	$doyz='2';
+}
+if($doyz=='1'){
+if(!isset($_POST['username'],$_POST['password'],$_POST['jyjg'])){
+	            $tmod='BUError';
+	            $btsuerrormsg='请输入用户名和密码！';
+				include('intem.php');
+				exit;
+}
+if($_SESSION["jyjg"]!="MyBtsuOK"){
+		if($_SESSION["jyjg"]!=intval($_POST["jyjg"])){
+			$tmod='BUError';
+		    $btsuerrormsg='验证计算错误!';
+			include('intem.php');
+			exit;
+	    }
+		}
+$username=$_POST['username'];
+$password=$_POST['password'];
+include("$WHandlogin");
+if($handdljg!="TRUE"){
+		$tmod='BUError';
+		$btsuerrormsg='登陆失败!';
+		include('intem.php');
+		exit;
+		}
+$_SESSION['MyBtsuLI']='1';
+$_SESSION['MyUsername']=$Iusername;
+if(isset($_POST['rbme'])){
+	$ckeya=rand(9999,100000);
+	if($_POST['rbme']=='on'){
+		$MYdate=time();
+		$ckeyb=mt_rand(8888,100000);
+        CIucookie($ckeya,$ckeyb,$Iusername,$MYdate,1,0);
+		setcookie('ckeya',$ckeya,time()+604800);
+		setcookie("ckeyb",$ckeyb,time()+604800);
+		setcookie("MYusername",$Iusername,time()+604800);
+		setcookie("MYdate",$MYdate,time()+604800);
+	}else{
+		        $tmod='BUError';
+	            $btsuerrormsg='未知错误！请联系系统管理员.#M1_PHP Error!';
+				include('intem.php');
+				exit;
+	}
+}
+}
+if(!isset($_SESSION['MyBtsuLI'])){
+$tmod='BUError';
+		$btsuerrormsg='严重错误！请重试。';
+		include('intem.php');
+		exit;
+}
+if($_SESSION['MyBtsuLI']!='1'){
+$tmod='BUError';
+		$btsuerrormsg='非法操作或超时！';
+		include('intem.php');
+		exit;
+}
+if(isset($_GET['logout'])){
+	if($_GET['logout']=='logout'){
+	setcookie('ckeya','',time()-7200);
+	setcookie("ckeyb",'',time()-7200);
+	setcookie("MYusername",'',time()-7200);
+	setcookie("MYdate",'BTSuserUnSet',time()-7200);
+	$_SESSION['MyBtsuLI']='3';
+	$_SESSION['MyUsername']='UnKnow';
+	unset($_SESSION['MyBtsuLI']);
+    unset($_SESSION['MyUsername']);
+	?>
+			<script language="javascript" type="text/javascript">
+           window.location.href="LoginMe.php"; 
+            </script>
+	<?
+	}
+}
+if(!isset($_GET['msg'])){
+	$msg='index';
+ }else{
+	$msg=trim($_GET['msg']);
+ }
+ switch($msg){
+	 case "list":
+		 $dhlight='2';
+	 break;
+	 default:
+		 $dhlight='1';
+	 break;
+ }
+$Iusername=$_SESSION['MyUsername'];
+$tmod='MyBtsu';
+include('intem.php');
+$pluswz='Mybtsuf';
+include('btsuplus.php');
