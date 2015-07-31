@@ -1,4 +1,0 @@
-Wordpress是个很棒的博客程序，所以Hand编写也非常的顺利。
-您只需把/BTSUHand/目录整体放在wordpress目录下，并配置好/BTSUHand/config/handconfig.php和MySQL_CONFIG.php即可
-
-如有任何问题请来btsnowball.org和我们联系
