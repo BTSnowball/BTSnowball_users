@@ -144,8 +144,36 @@
   <div class="col-md-3 text-left">
   <h5><strong>授权登陆过程遇到问题：</strong></h5>
   <?php echo $bdmsg; ?><br />
-您需要进行用户绑定操作！
-
+您需要进行用户绑定操作！<?php if($uncan=='3'){ ?>您还可以: <br />
+ <input type="button" id="btn" value="获取临时密码并发送到您的注册邮箱" /> 
+<script type="text/javascript"> 
+var wait=60; 
+function time(o) { 
+if (wait == 0) { 
+o.removeAttribute("disabled"); 
+o.value="获取临时密码并发送到您的注册邮箱"; 
+wait = 60; 
+} else { 
+o.setAttribute("disabled", true); 
+o.value="重新发送(" + wait + ")"; 
+wait--; 
+setTimeout(function() { 
+time(o) 
+}, 
+1000) 
+} 
+} 
+document.getElementById("btn").onclick=function(){
+$.ajax({ 
+type: "get", 
+url: "btsudo.php", 
+data: "doid=5" //操作成功后的操作！msg是后台传过来的值 
+}); 
+time(this);} 
+</script>
+<?php
+  }
+?>
  </div>
   <div class="col-md-3">&nbsp;</div>
  </div>

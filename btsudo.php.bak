@@ -526,7 +526,7 @@ switch($doid){
 		$IINr=$INr["in"];
 		switch($IINr){
 			case "1":
-				if(!isset($_SESSION['btsuregyz'],$_POST['jyjg'])){
+				if(!isset($_SESSION['btsuregyz'])){
 				$_SESSION['btsuregyz']='will';
                 $_SESSION["jyjg"]=rand(0,99999);
 			    }
