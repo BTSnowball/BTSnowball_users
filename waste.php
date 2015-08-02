@@ -6,6 +6,9 @@
 +Copyright (c) 2015 版权所属于相应代码的作者、贡献人和BTSnowball_Org社区相关人员
 + Author list:林友哲(Lin Youzhe)
 */
+if(!defined('IN_BTSUE')) {
+	exit('CK Faild!');
+}
 $isdoclean=rand(0,10000);
 if($isdoclean<=$wastedo){
 $wstim=time();
