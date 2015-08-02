@@ -17,18 +17,31 @@ if(!defined('IN_BTSUE_INS')) {
 $linka=mysql_connect($mysql_host,$mysql_user,$mysql_pass) or die("数据库连接失败".mysql_error());
 mysql_select_db($mysql_dbname,$linka);
 mysql_query("set names utf8");
- $lines = file('./include/install.sql');
- foreach ($lines as $line)
-{
-if (substr($line, 0, 2) == '--' || $line == '')
-    continue;
-$templine='';
-$templine .= $line;
-if (substr(trim($line), -1, 1) == ';')
-{
-    mysql_query($templine,$linka);
-    $templine = '';
-}
+$dbfile="./include/install.sql"; 
+$content=file_get_contents($dbfile); 
+//获取创建的数据 
+//去掉注释 
+$content=preg_replace("/--.*\n/iU","",$content); 
+//替换前缀 
+$content=str_replace("ct_",TABLE_PRE,$content); 
+
+$carr=array(); 
+$iarr=array(); 
+//提取create 
+preg_match_all("/Create table .*\(.*\).*\;/iUs",$content,$carr); 
+$carr=$carr[0]; 
+foreach($carr as $c) 
+{ 
+@mysql_query($c,$linka); 
+} 
+
+//提取insert 
+preg_match_all("/INSERT INTO .*\(.*\)\;/iUs",$content,$iarr); 
+$iarr=$iarr[0]; 
+//插入数据 
+foreach($iarr as $c) 
+{ 
+@mysql_query($c,$linka); 
 }
  
  ?>
