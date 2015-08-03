@@ -23,7 +23,7 @@ $content=file_get_contents($dbfile);
 //去掉注释 
 $content=preg_replace("/--.*\n/iU","",$content); 
 //替换前缀 
-$content=str_replace("ct_",TABLE_PRE,$content); 
+
 
 $carr=array(); 
 $iarr=array(); 
