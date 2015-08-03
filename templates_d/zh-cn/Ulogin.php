@@ -58,6 +58,16 @@
       <input type="password" class="form-control" id="inputPassword3" placeholder="请输入密码" name="pwd">
     </div>
   </div>
+  <?php
+  if(!isset($doczyzm)){
+	  $echoyzm=1;
+ }elseif($doczyzm=='2'){
+	  $echoyzm=2;
+ }else{
+	 $echoyzm=1;
+ }
+ if($echoyzm==1){
+  ?>
  <div class="form-group">
     <label for="yzjsjg" class="col-sm-4 control-label">验证:</label>
 	<div class="for-one">
@@ -66,6 +76,13 @@
   </div>
   </div>
   </div>
+  <?php
+ }else{
+	  ?>
+	  <input type="hidden" class="form-control-yzm" name="jyjg" id="yzjsjg"  placeholder="请输入验证计算结果" value="<?php echo rand(999,9999); ?>" >
+	  <?php
+  }
+  ?>
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
       <button type="submit" class="btn btn-primary">授权并登录</button>

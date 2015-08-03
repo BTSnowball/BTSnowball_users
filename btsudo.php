@@ -295,6 +295,9 @@ switch($doid){
         </form>
 		<?
         */
+		$btsyzmact='btsUlogin';
+		$wateruser=$Uuser;
+		include('waterwall.php');
 		$tmod='Ulogin';
 		include('intem.php');
 		}else if($ULoginIN=="1"){
@@ -356,7 +359,20 @@ switch($doid){
 			include('intem.php');
 			exit;
 		}
+		if(!isset($_SESSION["jyjg"])){
+			$_SESSION["jyjg"]=rand(99,999999);
+		}
 		if($_SESSION["jyjg"]!="OK"){
+			if(!isset($_POST["jyjg"])){
+			$tmod='BUError';
+			$btsuerrormsg='验证码错误或操作超时！';
+			include('intem.php');
+			exit;
+			}
+			if($_SESSION['doczyzm']=='btsUlogin'){
+				$_SESSION["jyjg"]=intval($_POST["jyjg"]);
+                $_SESSION['doczyzm']=3;
+			}
 		if($_SESSION["jyjg"]!=intval($_POST["jyjg"])){
 			$_SESSION["jyjg"]=rand(0,99999);//将计算结果破坏掉，并且回回都破坏。
 			$tmod='BUError';
@@ -618,6 +634,10 @@ switch($doid){
 				$mailtitle='您在'.$Wname.'['.$SDomain.']的独立用户名和密码';
 				$mailtxt='您已经成功使用BTSnowBall_Users协议登陆了'.$Wname.'['.$SDomain.']。在这里您除了可以继续使用BTSnowBall_Users方式登陆'.$Wname.'['.$SDomain.']以外我们还为您生成了一个独立的登陆用户名和密码以备不时之需。<br />您的用户名是:'.$Iusername.'<br />您的密码是:'.$password.'<br />此致<br />'.$Wname.'['.$SDomain.']&BTSnowBall项目社区[BTSnowBall.Org]';
 				include('dorun/Run_Mail.php');
+				$password='SDSDASF';
+				$fs="2";
+				$username=$Iusername;
+				include("$WHandlogin");
 				?>
 				<script language="javascript" type="text/javascript">
                 window.location.href="<?php echo $URLrep.$WDomain; ?>"; 

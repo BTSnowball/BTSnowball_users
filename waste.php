@@ -1,10 +1,10 @@
 <?php
 /*
 +BTSnowball_Users!
-+BTSnowball.OrgÉçÇø»¶Ó­ÄúµÄ¼ÓÈë
-+±¾×÷Æ·×ñÑ­Apache lincense V2.0²¢²¹³äÓÐBTSpl¡£¾ßÌåÇë²Î¼ûlincense&txtÎÄ¼þ¼ÐÏÂÏà¹ØÎÄ¼þ
-+Copyright (c) 2015 °æÈ¨ËùÊôÓÚÏàÓ¦´úÂëµÄ×÷Õß¡¢¹±Ï×ÈËºÍBTSnowball_OrgÉçÇøÏà¹ØÈËÔ±
-+ Author list:ÁÖÓÑÕÜ(Lin Youzhe)
++BTSnowball.Orgç¤¾åŒºæ¬¢è¿Žæ‚¨çš„åŠ å…¥
++æœ¬ä½œå“éµå¾ªApache lincense V2.0å¹¶è¡¥å……æœ‰BTSplã€‚å…·ä½“è¯·å‚è§lincense&txtæ–‡ä»¶å¤¹ä¸‹ç›¸å…³æ–‡ä»¶
++Copyright (c) 2015 ç‰ˆæƒæ‰€å±žäºŽç›¸åº”ä»£ç çš„ä½œè€…ã€è´¡çŒ®äººå’ŒBTSnowball_Orgç¤¾åŒºç›¸å…³äººå‘˜
++ Author list:æž—å‹å“²(Lin Youzhe)
 */
 if(!defined('IN_BTSUE')) {
 	exit('CK Faild!');
@@ -16,4 +16,5 @@ $swtim=$wstim-$wastetime;
 mysql_query("delete FROM `".$mysql_head."bh_list` WHERE `date`<'".$swtim."' ",$linka);
 mysql_query("delete FROM `".$mysql_head."yzm_list` WHERE `date`<'".$swtim."' ",$linka);
 mysql_query("delete FROM `".$mysql_head."reslist` WHERE `date`<'".$swtim."' ",$linka);
+mysql_query("delete FROM `".$mysql_head."waterhub` WHERE `date`<'".$swtim."' ",$linka);
 }

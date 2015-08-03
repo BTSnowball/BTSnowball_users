@@ -425,6 +425,13 @@ function SETres($Ibh,$key,$value,$zt=1,$safe=1){
 	}
 	$date=time();
 	include('./dorun/Run_Mysql.php');
+	$sqlwater=mysql_query("SELECT `id` FROM `".$mysql_head."reslist` WHERE `Ibh`='".$Ibh."' AND `key`='".$key."' AND `val`='".$val."' ",$linka);
+	if(!empty($sqlwater)){
+		$waternum=mysql_num_rows($sqlwater);
+		if($waternum>=1){
+			return 'faild';
+		}
+	}
 	mysql_query("INSERT INTO  `".$mysql_head."reslist` (`Ibh`,`key`,`val`,`zt`,`date`)VALUES ('$Ibh','$key','$val','$zt','$date')",$linka);
 }
 function QCres($bh,$key,$zt=1,$cs=900,$safe=1){
