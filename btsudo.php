@@ -122,7 +122,12 @@ switch($doid){
 			include('intem.php');
 			exit;
 		}
-		$bh=Cbh($lidomain,$lidun);
+		if(isset($_GET['lcadd'])){
+			$lcadd=$_GET['lcadd'];
+		}else{
+			$lcadd='web';
+		}
+		$bh=Cbh($lidomain,$lidun,$lcadd);
 		SURIbh($Uaddra,$Uaddrb,$bh,$lidomain,$UURLrep);
 		}else{
 			$tmod='BUError';
@@ -638,6 +643,16 @@ switch($doid){
 				$fs="2";
 				$username=$Iusername;
 				include("$WHandlogin");
+				switch($bhmsg['lcadd']){
+					case 'mb':
+						$WDomain=$mweb;
+					break;
+					case 'app':
+						$WDomain=$appweb;
+					break;
+					default:
+	                break;
+				}
 				?>
 				<script language="javascript" type="text/javascript">
                 window.location.href="<?php echo $URLrep.$WDomain; ?>"; 

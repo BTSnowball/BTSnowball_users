@@ -9,10 +9,11 @@
 /*
 在这段程序中有些不习惯使用mysql_库的朋友会质疑会不会过多的浪费资源了。所以我在这写几句体外话，面对这个函数库我使用的是mysql_connect，mysql_connect的实现中，如果再次调用它时操作的是同一个数据库，那么会返回第一次调用mysql_connect返回的那个句柄，也就是说多次调用mysql_connect()，将不会建立新连接，而将返回已经打开的连接标识，这个过程效率到可以忽略。当然把句柄直接传进函数体来效率会更高，但是今后维护这段代码可就要带来巨大的问题了，所以调mysql_connect()来传句柄吧，但是这样有效的避免了有些服务端在监听进程被K掉后导致一些错误。
 */
-function Cbh($dm,$lu,$safe=1){
+function Cbh($dm,$lu,$lcadd='web',$safe=1){
 	if($safe!=0){
 	$dm=YZdm($dm);
 	$user=fzr($lu);
+	$lcadd=fzr($lcadd);
 	}else{
 	$user=$lu;
 	}
@@ -31,7 +32,7 @@ function Cbh($dm,$lu,$safe=1){
 	}
 	$cs=2;
 	$date=time();
-	mysql_query("insert into ".$mysql_head."bh_list(Ibh,dm,zt,date,user) values('$bh','$dm','1','$date','$user')",$linka);
+	mysql_query("insert into ".$mysql_head."bh_list(Ibh,dm,zt,date,user,lcadd) values('$bh','$dm','1','$date','$user','$lcadd')",$linka);
 	}while($cs==1);
 	return $bh;
 }
@@ -114,15 +115,15 @@ function BtsQbh($bh,$UI=1,$zt=0,$safe=1){
 	include('./dorun/Run_Mysql.php');
 	if($UI=="1"){
 	if($zt=="0"){
-		$sqlbh=mysql_query("SELECT `dm`,`zt`,`user`,`date`,`dourl`,`apiurl`,`urlrep` FROM `".$mysql_head."bh_list` WHERE `Ibh`='".$bh."' ",$linka);
+		$sqlbh=mysql_query("SELECT `dm`,`zt`,`user`,`date`,`dourl`,`apiurl`,`urlrep`,`lcadd` FROM `".$mysql_head."bh_list` WHERE `Ibh`='".$bh."' ",$linka);
 	}else{
-		$sqlbh=mysql_query("SELECT `dm`,`user`,`date`,`dourl`,`apiurl`,`urlrep` FROM `".$mysql_head."bh_list` WHERE `Ibh`='".$bh."' AND `zt`='".$zt."' ",$linka);
+		$sqlbh=mysql_query("SELECT `dm`,`user`,`date`,`dourl`,`apiurl`,`urlrep`,`lcadd` FROM `".$mysql_head."bh_list` WHERE `Ibh`='".$bh."' AND `zt`='".$zt."' ",$linka);
 	}
 	}else{
 	if($zt=="0"){
-		$sqlbh=mysql_query("SELECT `dm`,`zt`,`user`,`date`,`dourl`,`apiurl`,`urlrep` FROM `".$mysql_head."bh_list` WHERE `Ubh`='".$bh."' ",$linka);
+		$sqlbh=mysql_query("SELECT `dm`,`zt`,`user`,`date`,`dourl`,`apiurl`,`urlrep`,`lcadd` FROM `".$mysql_head."bh_list` WHERE `Ubh`='".$bh."' ",$linka);
 	}else{
-		$sqlbh=mysql_query("SELECT `dm`,`user`,`date`,`dourl`,`apiurl`,`urlrep` FROM `".$mysql_head."bh_list` WHERE `Ubh`='".$bh."' AND `zt`='".$zt."' ",$linka);
+		$sqlbh=mysql_query("SELECT `dm`,`user`,`date`,`dourl`,`apiurl`,`urlrep`,`lcadd` FROM `".$mysql_head."bh_list` WHERE `Ubh`='".$bh."' AND `zt`='".$zt."' ",$linka);
 	}
 	}
 	if($info=mysql_fetch_object($sqlbh)){
@@ -140,6 +141,7 @@ function BtsQbh($bh,$UI=1,$zt=0,$safe=1){
 	$remsg["dourl"]=$info->dourl;
 	$remsg["apiurl"]=$info->apiurl;
 	$remsg["urlrep"]=$info->urlrep;
+	$remsg["lcadd"]=$info->lcadd;
 	$remsg["jg"]='Success';
 	if($zt=="0"){
 		$remsg["zt"]=$info->zt;
