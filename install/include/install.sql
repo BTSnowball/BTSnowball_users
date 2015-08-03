@@ -1,9 +1,9 @@
-﻿-- phpMyAdmin SQL Dump
+-- phpMyAdmin SQL Dump
 -- version phpStudy 2014
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2015 年 07 月 17 日 22:34
+-- 生成日期: 2015 年 08 月 03 日 13:28
 -- 服务器版本: 5.5.38
 -- PHP 版本: 5.4.29
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- 数据库: `BTSnowball_Users`
+-- 数据库: `btsuinstall`
 --
 
 -- --------------------------------------------------------
@@ -59,6 +59,9 @@ CREATE TABLE IF NOT EXISTS `btsu_bh_list` (
   `dourl` varchar(150) NOT NULL,
   `apiurl` varchar(150) NOT NULL,
   `urlrep` varchar(200) NOT NULL DEFAULT 'http://',
+  `from` int(2) NOT NULL DEFAULT '0',
+  `lcadd` varchar(10) NOT NULL DEFAULT 'web',
+  `stra` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=gbk AUTO_INCREMENT=1 ;
 
@@ -199,6 +202,22 @@ CREATE TABLE IF NOT EXISTS `btsu_u_yzm_list` (
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `btsu_waterhub`
+--
+
+CREATE TABLE IF NOT EXISTS `btsu_waterhub` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `date` int(11) NOT NULL,
+  `ip` varchar(20) NOT NULL,
+  `act` varchar(20) NOT NULL DEFAULT 'fangwen',
+  `username` varchar(50) NOT NULL DEFAULT 'UNknow',
+  `zt` int(2) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=gbk AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `btsu_w_black`
 --
 
@@ -240,7 +259,7 @@ CREATE TABLE IF NOT EXISTS `btsu_w_friend` (
   `txt` varchar(200) NOT NULL DEFAULT 'none',
   `sync` int(2) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=gbk AUTO_INCREMENT=26 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=gbk AUTO_INCREMENT=29 ;
 
 --
 -- 转存表中的数据 `btsu_w_friend`
