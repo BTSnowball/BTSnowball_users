@@ -645,6 +645,11 @@ switch($doid){
 				$passs=md5($pass);
 				$password=substr($pass,1,17);
 				include($WHandreg);
+				if(isset($bdyzh)){
+					if($bdyzh=='1'){
+					$tgreg='1';
+					}
+				}
 				if(!isset($btsuee)){
 			    $btsuee='0';
 		        }
@@ -675,11 +680,13 @@ switch($doid){
 				SETfriend($Uwname,$Udm,2);
 			    }
 				}
+				if($tgreg!='1'){
 				echo 'Username & Password of ['.$SDomain.'] has been send to your emailaddress!';
 				$mailto=$email;
 				$mailtitle='您在'.$Wname.'['.$SDomain.']的独立用户名和密码';
-				$mailtxt='您已经成功使用BTSnowBall_Users协议登陆了'.$Wname.'['.$SDomain.']。在这里您除了可以继续使用BTSnowBall_Users方式登陆'.$Wname.'['.$SDomain.']以外我们还为您生成了一个独立的登陆用户名和密码以备不时之需。<br />您的用户名是:'.$Iusername.'<br />您的密码是:'.$password.'<br />此致<br />'.$Wname.'['.$SDomain.']&BTSnowBall项目社区[BTSnowBall.Org]';
+				$mailtxt='You have successfully logged in '.$Wname.'['.$SDomain.']with the BTSnowBall_Users protocol.Here you except you can continue to use BTSnowBall_Users users landing outside the'.$Wname.'['.$SDomain.']we also as you create a separate login user name and password for a rainy day.<br />Your Username is :<strong>'.$Iusername.'</strong><br />Your Password is:<strong>'.$password.'</strong><br />Thanks<br />'.$Wname.'['.$SDomain.']&BTSnowBall_Org[BTSnowBall.Org]';
 				include('dorun/Run_Mail.php');
+				}
 				$password='SDSDASF';
 				$fs="2";
 				$username=$Iusername;
@@ -742,10 +749,8 @@ switch($doid){
 		break;
 		case "5":
 		if(isset($_SESSION['BtsUserpw'],$_SESSION['BtsUserpwdate'])){
-			echo '1';
 		$timecha=time()-$_SESSION['BtsUserpwdate'];
 		if($timecha<=440){
-			echo '2';
 			$_SESSION['BtsUserpwdo']=$_SESSION['BtsUserpw'];
 			$_SESSION['BtsUserpwdodate']=time();
 			$_SESSION['btslspw']=rand(999,9999999);
@@ -755,7 +760,6 @@ switch($doid){
 			include('dorun/Run_Mail.php');
 		}
 	    }
-		echo '3';
 	break;
 	case "plus":
 		$plusname="none";
