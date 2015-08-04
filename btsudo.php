@@ -543,10 +543,12 @@ switch($doid){
 		$_SESSION["Udm"]=$Udm;
 		include("$WHand");
 		$username=$bhmsg["user"];
+		$Uusername=$username;
 		$INr=IINreg($username,$Udm);
 		$IINr=$INr["in"];
 		switch($IINr){
 			case "1":
+				if(!isset($_SESSION['btsuregyzwc'])){
 				if(!isset($_SESSION['btsuregyz'],$_POST['jyjg'])){
 				$_SESSION['btsuregyz']='will';
                 $_SESSION["jyjg"]=rand(0,99999);
@@ -559,6 +561,8 @@ switch($doid){
 				$tmod='IIlogin';
 		        include('intem.php');
 		        exit;
+				}else{
+                $_SESSION['btsuregyzwc']='ok';
 				}
 			    }else{
 				$_SESSION["jyjg"]=rand(0,99999);
@@ -567,6 +571,7 @@ switch($doid){
 		        include('intem.php');
 		        exit;
 				}
+			    }
 			    $qxarr=explode(",",$NeedM);
 				$regml="";
 				foreach($qxarr as $qxa){  //待优化
@@ -601,21 +606,56 @@ switch($doid){
 			     exit;
 		         }
 				}
+				if(isset($_SESSION['BtsUserpwdo'],$_SESSION['BtsUserpwdodate'],$_SESSION['btslspw'],$_SESSION['BtsUserpwemail'],$_POST['pwd'])){
+					$tgreg='2';
+					if($_SESSION['BtsUserpw']==$username){
+						$timenow=time();
+						$bdtmcha=$timenow-$_SESSION['BtsUserpwdodate'];
+						if($bdtmcha<=600){
+							if($_SESSION['btslspw']==$_POST['pwd']){
+								$email=$_SESSION['BtsUserpwemail'];
+								$username=$email;
+								$fs=2;
+								$rid=1;
+								$password=rand(99,999999);
+								include_once("$WHand");
+								$handdlfh=handdl($username,$password,$fs,$rid);
+								$handdljg=$handdlfh['jg'];
+								if($handdljg!="TRUE"){
+					            $tmod='BUError';
+		                        $btsuerrormsg='登陆失败！';
+		                        include('intem.php');
+		                          exit;
+				                }
+								$Iusername=$handdlfh['username'];
+								$Iuid=$handdlfh['uid'];
+								$tgreg='1';
+							}
+						}
+					}
+					$_SESSION['BtsUserpwdo']=rand(999,999999);
+					$_SESSION['BtsUserpwemail']=rand(999,999999);
+					$_SESSION['btslspw']=rand(999,999999);
+					$_SESSION['BtsUserpwdodate']=1;
+				}else{
+					$tgreg='2';
+				}
+		if($tgreg!='1'){
 				$pass=$Iyzm['yzmd'].time();
 				$passs=md5($pass);
 				$password=substr($pass,1,17);
 				include($WHandreg);
 				if(!isset($btsuee)){
-			$btsuee='0';
-		}
+			    $btsuee='0';
+		        }
 				if($btsuee=='1'){
-			$tmod='BUError';
-			if(!isset($btsuerrormsg)){
-	        $btsuerrormsg='非法请求或未知错误！请联系系统管理员!';
-			}
-			include('intem.php');
-			exit;
-		}
+			    $tmod='BUError';
+			    if(!isset($btsuerrormsg)){
+	            $btsuerrormsg='非法请求或未知错误！请联系系统管理员!';
+			    }
+			    include('intem.php');
+			    exit;
+		        }
 				if(isset($Userbd)){
 					if($Userbd=='1'){
 						$tmod='UserBD';
@@ -624,6 +664,7 @@ switch($doid){
 					}
 					exit;
 				}
+		}
 				SETuzt($Iusername,$Uusername,$Udm,2,1,$Iuid,1,$email,1);
 				if($WDomain!=$Udm && $SDomain!=$Udm){
 				$iffriend=IINFSet($Udm,'2');
@@ -699,6 +740,23 @@ switch($doid){
 	        break;
 		}
 		break;
+		case "5":
+		if(isset($_SESSION['BtsUserpw'],$_SESSION['BtsUserpwdate'])){
+			echo '1';
+		$timecha=time()-$_SESSION['BtsUserpwdate'];
+		if($timecha<=440){
+			echo '2';
+			$_SESSION['BtsUserpwdo']=$_SESSION['BtsUserpw'];
+			$_SESSION['BtsUserpwdodate']=time();
+			$_SESSION['btslspw']=rand(999,9999999);
+			$mailto=$_SESSION['BtsUserpwemail'];
+			$mailtitle='您在'.$Wname.'['.$SDomain.']的临时密码';
+			$mailtxt= 'Your temporary password:<strong>'.$_SESSION['btslspw'].'</strong>['.$SDomain.']_[BTSnowBall.Org]';
+			include('dorun/Run_Mail.php');
+		}
+	    }
+		echo '3';
+	break;
 	case "plus":
 		$plusname="none";
 		if(isset($_GET["plus"])){

@@ -32,14 +32,11 @@ if($domail==1){
 			@mail($mailto,$mailtitle,$mailtxt,'BTSnowBall Connect');
 			break;
 		case '2':
-			include_once('./order/email.class.php');
+			include('./order/email.class.php');
 		    $mailtype='HTML';
 		    $smtp = new smtp($smtpserver,$smtpserverport,true,$smtpuser,$smtppass);//这里面的一个true是表示使用身份验证,否则不使用身份验证.
 	        $smtp->debug = false;//是否显示发送的调试信息
-	        $state = $smtp->sendmail($mailto,$smtpusermail,$mailtitle,$mailtxt, $mailtype);
-			if($state==""){
-				echo '邮件发送失败！(SMTP)';
-			}
+	        $smtp->sendmail($mailto,$smtpusermail,$mailtitle,$mailtxt, $mailtype);
 			break;
 		case '3':
 		echo '邮件发送被关闭！';

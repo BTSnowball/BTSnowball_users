@@ -144,7 +144,11 @@
   <div class="col-md-3 text-left">
   <h5><strong>授权登陆过程遇到问题：</strong></h5>
   <?php echo $bdmsg; ?><br />
-您需要进行用户绑定操作！<?php if($uncan=='3'){ ?>您还可以: <br />
+您需要进行用户绑定操作！<?php 
+$_SESSION['BtsUserpw']=$username;
+$_SESSION['BtsUserpwdate']=time();
+$_SESSION['BtsUserpwemail']=$email;
+if($uncan=='3'){ ?>您还可以: <br />
  <input type="button" id="btn" value="获取临时密码并发送到您的注册邮箱" /> 
 <script type="text/javascript"> 
 var wait=60; 
