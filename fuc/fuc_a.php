@@ -168,11 +168,11 @@ $str = iconv($encode,'UTF-8',$str);
 	}
 }
 }
+
 $str = str_replace('0xbf27', '%BF%27', $str);
 $str=str_safe_b($str);
-$str=inject_check($str);
 $str=stripslashes($str);
-$str=addslashes()($str);
+$str=addslashes($str);
 $str=mysql_real_escape_string($str);
 $str=str_replace("_","\_",$str);
 $str=str_replace("%","\%",$str);
