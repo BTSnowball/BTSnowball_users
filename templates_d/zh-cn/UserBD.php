@@ -79,7 +79,7 @@
 	<div class="form-group">
     <label for="ifwitchbtu1" class="col-sm-4 control-label">Email：</label>
     <div class="col-sm-8">
-      <input type="text" class="form-control" id="ifwitchbtu1"  placeholder="<?php echo $email; ?>" name="DEmail" value="<?php echo $email; ?>" disabled="disables">
+      <input type="text" class="form-control" id="ifwitchbtu1"  placeholder="请输入邮箱地址" name="DEmail" value="请输入邮箱地址" disabled="disables">
     </div>
     </div>
 	<?php
@@ -94,7 +94,7 @@
 	<div class="form-group">
     <label for="ifwitchbtu2" class="col-sm-4 control-label">Email：</label>
     <div class="col-sm-8">
-      <input type="text" class="form-control" id="ifwitchbtu2"  placeholder="<?php echo $email; ?>" name="email" value="<?php echo $email; ?>" >
+      <input type="text" class="form-control" id="ifwitchbtu2"  placeholder="请输入邮箱地址" name="email" value="请输入邮箱地址" >
     </div>
     </div>
 	<?php
@@ -109,7 +109,7 @@
 	<div class="form-group">
     <label for="ifwitchbtu2" class="col-sm-4 control-label">Email：</label>
     <div class="col-sm-8">
-      <input type="text" class="form-control" id="ifwitchbtu2"  placeholder="<?php echo $email; ?>" name="Demail" value="<?php echo $email; ?>" readonly="readonly">
+      <input type="text" class="form-control" id="ifwitchbtu2"  placeholder="请输入邮箱地址" name="Demail" value="请输入邮箱地址" readonly="readonly">
     </div>
     </div>
     <?php
