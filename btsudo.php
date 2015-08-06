@@ -147,7 +147,7 @@ switch($doid){
 			$Uyzm=CKUyzm($bh,$lidomain);
 			if($Uyzm['Debug']!='Success'){
 			$tmod='BUError';
-	        $btsuerrormsg='危险错误!-通信出错#0000A002（可能：①服务器DNS被篡改 ②对方服务器DNS被篡改 ③非法的信息格式/编码 ④未知错误）';
+	        $btsuerrormsg='Dangerous Error!危险错误!-Connect Error!通信出错#0000A002（可能：①服务器DNS被篡改 ②对方服务器DNS被篡改 ③非法的信息格式/编码 ④未知错误）';
 			include('intem.php');
 			exit;
 			}
@@ -161,7 +161,7 @@ switch($doid){
 			//&backurl="+window.location.href二次开发根据需要或可改动
 		}else{
 			$tmod='BUError';
-	        $btsuerrormsg='Error!-通信失败#0000A001';
+	        $btsuerrormsg='Error!-Connect Faild!通信失败#0000A001';
 			include('intem.php');
 			mysql_query("DELETE FROM ".$mysql_head."bh_list  where Ibh='".$bh."' AND dm='".$lidomain."' ",$linka);
 			mysql_query("DELETE FROM ".$mysql_head."yzm_list  where bh='".$bh."' AND yzm='".$yzma."' ",$linka);
