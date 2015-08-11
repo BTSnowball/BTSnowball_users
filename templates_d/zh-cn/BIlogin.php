@@ -39,24 +39,53 @@
  &nbsp;
  </div>
  <div class="container-fluid text-center">
- <h4><strong>欢迎！新的会员即将登入（<a href="<?php echo $WDomain; ?>" target="_blank"><?php echo $WebTxt; ?></a>）:</strong></h4><br />
+ <h4><strong>欢迎！即将登入（<a href="<?php echo $WDomain; ?>" target="_blank"><?php echo $WebTxt; ?></a>）由于您将来源网站设为了不信任所以需要二次校验:</strong></h4><br />
  </div>
  <div class="container-fluid text-center" id="ulogin">
  <form class="form-inline" name="BUULogin" action="" method="post">
   <div class="form-group">
-    <label for="BtsuName2">请输入验证计算结果:</label>
-    <input type="text" name="jyjg" class="form-control" id="BtsuName2" placeholder="answer" >
+    <label for="BtsuName2">请输入密码/临时密码:</label>
+    <input type="text" name="btsubimm" class="form-control" id="BtsuName2" placeholder="密码或临时密码" >
   </div>
   <div class="form-group">
-    <label for="Btsuset2">验证计算：</label>
-    <img id="verify-img" src="jsm.php" >
+ <?php
+$_SESSION['BtsUserpw']=rand(9,999999);
+$_SESSION['BtsUserpwdate']=time();
+$_SESSION['BtsUbiallow']='ok';
+?>
+ <input type="button" class="btn btn-success" id="btn" value="获取临时密码并发送到您的注册邮箱" /> 
+<script type="text/javascript"> 
+var wait=60; 
+function time(o) { 
+if (wait == 0) { 
+o.removeAttribute("disabled"); 
+o.value="获取临时密码并发送到您的注册邮箱"; 
+wait = 60; 
+} else { 
+o.setAttribute("disabled", true); 
+o.value="重新发送(" + wait + ")"; 
+wait--; 
+setTimeout(function() { 
+time(o) 
+}, 
+1000) 
+} 
+} 
+document.getElementById("btn").onclick=function(){
+$.ajax({ 
+type: "get", 
+url: "btsudo.php", 
+data: "doid=5" //操作成功后的操作！msg是后台传过来的值 
+}); 
+time(this);} 
+</script>
   </div>
-  <button type="submit" class="btn btn-primary">登入</button>
+    <button type="submit" class="btn btn-primary">登入</button>
     <div class="form-group">
   </div><br />
   <div class="checkbox text-center">
     <label>
-      <input type="checkbox" name="wisbelive" value="yes" checked/> 将原帐号所在网站设为<font color="red">信任</font>
+      <input type="checkbox" name="wisbeliveb" value="yes" /> 将原帐号所在网站设为<font color="red">信任</font>
     </label>
   </div>
 </form>

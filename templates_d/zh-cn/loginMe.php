@@ -71,7 +71,7 @@
     <label for="yzjsjg" class="col-sm-3 control-label">验证计算:</label>
 	<div class="for-one">
     <div class="col-sm-6">
-      <input type="text" class="form-control-yzm" name="jyjg" id="yzjsjg"  placeholder="请输入验证计算结果"  ></div><div class="col-sm-3"><img id="verify-img" src="http://buca.geili.in/btsuser/jsm.php" >
+      <input type="text" class="form-control-yzm" name="jyjg" id="yzjsjg"  placeholder="请输入验证计算结果"  ></div><div class="col-sm-3"><img id="verify-img" src="jsm.php" >
   </div></div></div>
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">

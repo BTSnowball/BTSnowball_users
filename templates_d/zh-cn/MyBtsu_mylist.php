@@ -10,6 +10,26 @@
 if(isset($_GET['do'])){
 	$domy=$_GET['do'];
 	switch($domy){
+		case "nobel":
+			if(!isset($_GET['dm'])){
+			break;
+		    }
+			$ddm=trim($_GET['dm']);
+			$ddm=fzr($ddm);
+			$qciue=QCBDUser($Iusername,1,$ddm,1);
+			$email=$qciue['email'];
+			SetBelive($email,$ddm,2);
+		break;
+		case "dobel":
+			if(!isset($_GET['dm'])){
+			break;
+		    }
+			$ddm=trim($_GET['dm']);
+			$ddm=fzr($ddm);
+			$qciue=QCBDUser($Iusername,1,$ddm,1);
+			$email=$qciue['email'];
+			SetBelive($email,$ddm,1,1,1);
+		break;
 		case "del":
 			if(!isset($_GET['id'])){
 			break;
@@ -79,11 +99,11 @@ $sqllist=mysql_query("SELECT * FROM `".$mysql_head."userzt` WHERE `Iusername`='"
 $dolist='1';
 if($infolist=mysql_fetch_object($sqllist)){
         if($infolist==""){
-		echo '没有更多记录！';
+		echo '没有更多记录！'.$Iusername.'1';
 		$dolist='2';
 		}
 	}else{
-		echo '没有更多记录！';
+		echo '没有更多记录！'.$Iusername.'2';
 		$dolist='2';
 	}
 if($dolist=='1'){
@@ -94,7 +114,7 @@ if($dolist=='1'){
  <br />
  <table class="table table-hover">
   <tr>
-  <td>序号</td><td>绑定网站</td><td>流向</td><td>绑定用户名</td><td>绑定邮箱</td><td>状态</td><td>操作</td>
+  <td>序号</td><td>绑定网站</td><td>流向</td><td>绑定用户名</td><td>绑定邮箱</td><td>状态</td><td>信任</td><td>操作</td>
   </tr>
 <?php
 $donum=1;
@@ -130,6 +150,23 @@ do{
 			  echo '异常';
 		  }
 		  ?>
+		  </td><td>
+<?php
+  $bel=$infolist->isbelive;
+  if($bdfrom=='1'){
+	  ?>
+	  <a class="btn btn-warning" href="#">无效</a>
+	  <?php
+  }elseif($bel=='1'){
+	  ?>
+	  <a class="btn btn-success" href="?msg=list&do=nobel&dm=<?php echo $infolist->dm; ?>&page=<?php echo $page; ?>">是</a>
+	  <?php
+		  }else{
+		  ?>
+	  <a class="btnbtn-danger" href="?msg=list&do=dobel&dm=<?php echo $infolist->dm; ?>&page=<?php echo $page; ?>">否</a>
+			  <?php
+		  }
+?>
 		  </td><td>
 <?php
 if($zt=='1'){

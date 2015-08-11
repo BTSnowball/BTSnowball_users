@@ -178,6 +178,28 @@ $str=str_replace("_","\_",$str);
 $str=str_replace("%","\%",$str);
 return $str; 
 }
+function fzri($str,$bm='UTF-8') {   //简单粗暴,但如果不在判定范围内必须指定。请各位开发者注意
+$encode = mb_detect_encoding( $str, array('ASCII','UTF-8','GB2312','GBK','BIG5','JIS'));
+if ( !$encode =='UTF-8' ){
+if($encode!=FALSE){
+$str = iconv('UTF-8',$encode,$str);
+$str = iconv($encode,'UTF-8',$str);
+}else{
+	if($bm!='UTF-8'){
+       $str = iconv('UTF-8',$bm,$str);
+       $str = iconv($bm,'UTF-8',$str);
+	}
+}
+}
+
+$str = str_replace('0xbf27', '%BF%27', $str);
+$str=str_safe_b($str);
+$str=stripslashes($str);
+$str=addslashes($str);
+$str=str_replace("_","\_",$str);
+$str=str_replace("%","\%",$str);
+return $str; 
+}
 function fzrb($str) { 
 if (!get_magic_quotes_gpc()) { // 判断magic_quotes_gpc是否打开 
 $str = addslashes($str); // 进行过滤 

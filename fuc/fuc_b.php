@@ -668,7 +668,7 @@ function QCFriend($dm,$from,$safe=1){
 	return $cnr;
 	}
 }
-function QCBDUser($usermasg,$mid,$dm,$safe=1){
+function QCBDUser($usermasg,$mid,$dm='none',$safe=1){
 	if($safe!=0){
 	$Iusername=fzr($usermasg);
 	if($dm!='none'){
@@ -717,6 +717,7 @@ function QCBDUser($usermasg,$mid,$dm,$safe=1){
 	$remsg['zt']=$info->zt;
 	$remsg['from']=$info->from;
 	$remsg['Id']=$info->id;
+	$remsg['email']=$info->email;
 	$remsg['jg']='Success';
 	return $remsg;
 }
@@ -1090,4 +1091,73 @@ function IsECanStop($email,$safe=1){ //未完成！！！！！
 	    $remsg['jg']='cant';
 		return  $remsg;
 	  }
+}
+function IsBelive($dm,$Iusername,$safe=1){
+	if($safe!=0){
+	$dm=YZdm($dm);
+	$dm=fzr($dm);
+	$Iusername=fzr($Iusername);
+	}
+	include('./dorun/Run_Mysql.php');
+	$sqljc=mysql_query("SELECT `id` FROM `".$mysql_head."btsu_w_belivelist` WHERE `wdomain`='".$dm."' AND `zt`='1' ",$linka);
+	if(!empty($sqljc)){
+	  if($info=mysql_fetch_object($sqljc)){
+        if(isset($info->id)){
+		$remsg['jg']='true';
+		$remsg['wid']=$info->id;
+		return  $remsg;
+		}
+	  }
+	}
+	if($Iusername=='0'||$Iusername==''){
+		$remsg['jg']='false';
+		$remsg['wid']='0';
+		return  $remsg;
+	}
+	$sqljc=mysql_query("SELECT `id` FROM `".$mysql_head."btsu_userzt` WHERE `dm`='".$dm."' AND `zt`='1' AND `Iusername`='".$Iusername."' AND `from`='2' ",$linka);
+	if(!empty($sqljc)){
+	  if($info=mysql_fetch_object($sqljc)){
+        if(isset($info->id)){
+		$remsg['jg']='true';
+		$remsg['zid']=$info->id;
+		return  $remsg;
+		}
+	  }
+	}
+	$remsg['jg']='false';
+	$remsg['wid']='0';
+	return  $remsg;
+}
+function NewBelive($dm,$wname,$rank=1,$zt=2,$safe=1){
+	if($safe!=0){
+	$dm=YZdm($dm);
+	$dm=fzr($dm);
+	$wname=str_safe_d($wname,2);
+	$rank=intval($rank);
+	$zt=intval($zt);
+	}
+	$date=time();
+	include('./dorun/Run_Mysql.php');
+    mysql_query("INSERT INTO  `".$mysql_head."w_belivelist` (`wname`,`wdomain`,`rank`,`zt`,`date``)VALUES ('$wname','$dm','$rank','$zt','$date')",$linka);
+}
+function SetBelive($email,$dm,$isbelive,$zt=1,$safe=1){
+	if($safe!=0){
+	$dm=YZdm($dm);
+	$dm=fzr($dm);
+	$email=fzr($email);
+	$isbelive=intval($isbelive);
+	$zt=intval($zt);
+	}
+	$date=time();
+	include('./dorun/Run_Mysql.php');
+    mysql_query("update `".$mysql_head."userzt` set `isbelive`='".$isbelive."' where `email`='".$email."' AND `dm`='".$dm."' AND `from`='2' AND `zt`='".$zt."' ",$linka);
+}
+function DelBelive($dm,$safe=1){
+	if($safe!=0){
+	$dm=YZdm($dm);
+	$dm=fzr($dm);
+	}
+	$date=time();
+	include('./dorun/Run_Mysql.php');
+    mysql_query("DELETE FROM `".$mysql_head."w_belivelist`  where `dm`='".$dm."' ",$linka);
 }

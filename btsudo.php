@@ -147,7 +147,7 @@ switch($doid){
 			$Uyzm=CKUyzm($bh,$lidomain);
 			if($Uyzm['Debug']!='Success'){
 			$tmod='BUError';
-	        $btsuerrormsg='Dangerous Error!危险错误!-Connect Error!通信出错#0000A002（可能：①服务器DNS被篡改 ②对方服务器DNS被篡改 ③非法的信息格式/编码 ④未知错误）';
+	        $btsuerrormsg='危险错误!-通信出错#0000A002（可能：①服务器DNS被篡改 ②对方服务器DNS被篡改 ③非法的信息格式/编码 ④未知错误）';
 			include('intem.php');
 			exit;
 			}
@@ -161,7 +161,7 @@ switch($doid){
 			//&backurl="+window.location.href二次开发根据需要或可改动
 		}else{
 			$tmod='BUError';
-	        $btsuerrormsg='Error!-Connect Faild!通信失败#0000A001';
+	        $btsuerrormsg='Error!-通信失败#0000A001';
 			include('intem.php');
 			mysql_query("DELETE FROM ".$mysql_head."bh_list  where Ibh='".$bh."' AND dm='".$lidomain."' ",$linka);
 			mysql_query("DELETE FROM ".$mysql_head."yzm_list  where bh='".$bh."' AND yzm='".$yzma."' ",$linka);
@@ -548,7 +548,8 @@ switch($doid){
 		$IINr=$INr["in"];
 		switch($IINr){
 			case "1":
-				if(!isset($_SESSION['btsuregyzwc'])){
+				$_SESSION['wisbelive']='2';
+				if(!isset($_SESSION['btsuregyzwc'])||$_SESSION['btsuregyzwc']!='ok'){
 				if(!isset($_SESSION['btsuregyz'],$_POST['jyjg'])){
 				$_SESSION['btsuregyz']='will';
                 $_SESSION["jyjg"]=rand(0,99999);
@@ -563,6 +564,16 @@ switch($doid){
 		        exit;
 				}else{
                 $_SESSION['btsuregyzwc']='ok';
+				$_SESSION["jyjg"]=rand(0,99999);
+				if(isset($_POST['wisbelive'])){
+					if($_POST['wisbelive']=='yes'){
+						$_SESSION['wisbelive']='1';
+					}else{
+						$_SESSION['wisbelive']='2';
+					}
+				}else{
+					$_SESSION['wisbelive']='2';
+				}
 				}
 			    }else{
 				$_SESSION["jyjg"]=rand(0,99999);
@@ -572,6 +583,8 @@ switch($doid){
 		        exit;
 				}
 			    }
+				$_SESSION['btsuregyz']='reg';
+				$_SESSION['btsuregyzwc']='buok';
 			    $qxarr=explode(",",$NeedM);
 				$regml="";
 				foreach($qxarr as $qxa){  //待优化
@@ -671,6 +684,12 @@ switch($doid){
 				}
 		}
 				SETuzt($Iusername,$Uusername,$Udm,2,1,$Iuid,1,$email,1);
+				$wisbelive=$_SESSION['wisbelive'];
+				if($wisbelive=='1'){
+				$_SESSION['wisbelive']=2;
+				$wisbelive=2;
+				SetBelive($email,$Udm,1,1,1);
+				}
 				if($WDomain!=$Udm && $SDomain!=$Udm){
 				$iffriend=IINFSet($Udm,'2');
 			    if($iffriend['in']=='1'){
@@ -708,16 +727,71 @@ switch($doid){
 				<?
 			break;
 			case "2":
-				echo "login!";
 			    //handdl($username,'SDSDASF',2);
 				$password='SDSDASF';
 				$fs="2";
 				$username=$INr["Iusername"];
-				include("$WHandlogin");
-				if(!isset($btsuee)){
+				$ubelths='2';
+				$userbel=IsBelive($Udm,$username,1);
+				if($userbel['jg']!='true'){
+					if(!isset($_SESSION['BtsUbiallow'])){
+						$_SESSION['BtsUbiallow']='buok';
+					}
+					if($_SESSION['BtsUbiallow']=='ok'){
+					if(isset($_POST['btsubimm'])){
+						if($_POST['btsubimm']==$_SESSION['BtsUserpw']){
+							$_SESSION['BtsUserpw']=rand(99,99999999);
+							$ubelths=1;
+						}else{
+							$password=$_POST['btsubimm'];
+							include("$WHandlogin");
+		                    if(!isset($btsuee)){
+			                $btsuee='0';
+		                    }
+		                    if($btsuee=='1'){
+			                $tmod='BUError';
+			                if(!isset($btsuerrormsg)){
+	                        $btsuerrormsg='非法请求或未知错误！请联系系统管理员!';
+			                }
+			                include('intem.php');
+			                exit;
+		                    }
+		                    if($handdljg!="TRUE"){
+		                    $tmod='BUError';
+		                    $btsuerrormsg='登陆失败!';
+		                    include('intem.php');
+		                    exit;
+		                    }
+							$ubelths=1;
+						}
+					}
+					}
+				$_SESSION['BtsUbiallow']='buok';
+				if($ubelths!='1'){
+				$qciue=QCBDUser($username,1,$Udm,1);
+				$email=$qciue['email'];
+				$_SESSION['BtsUserpwemail']=$email;
+				$tmod='BIlogin';
+		        include('intem.php');
+		        exit;
+				}
+				}else{
+					$ubelths='1';
+				}
+				if($ubelths=='1'){
+					if(isset($_POST['wisbeliveb'])){
+						if($_POST['wisbeliveb']=='yes'){
+							$qciue=QCBDUser($username,1,$Udm,1);
+							$email=$qciue['email'];
+							SetBelive($email,$Udm,1,1,1);
+						}
+					}
+				}
+			include("$WHandlogin");
+			if(!isset($btsuee)){
 			$btsuee='0';
-		}
-				if($btsuee=='1'){
+		    }
+			if($btsuee=='1'){
 			$tmod='BUError';
 			if(!isset($btsuerrormsg)){
 	        $btsuerrormsg='非法请求或未知错误！请联系系统管理员!';

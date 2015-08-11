@@ -72,15 +72,17 @@ if($_SESSION["jyjg"]!="MyBtsuOK"){
 		}
 $username=$_POST['username'];
 $password=$_POST['password'];
+$Iusername=fzr($username);
 include("$WHandlogin");
 if($handdljg!="TRUE"){
 		$tmod='BUError';
 		$btsuerrormsg='登陆失败!';
 		include('intem.php');
 		exit;
-		}
+		}else{
 $_SESSION['MyBtsuLI']='1';
 $_SESSION['MyUsername']=$Iusername;
+		}
 if(isset($_POST['rbme'])){
 	$ckeya=rand(9999,100000);
 	if($_POST['rbme']=='on'){
@@ -126,6 +128,7 @@ if(isset($_GET['logout'])){
            window.location.href="LoginMe.php"; 
             </script>
 	<?
+	exit;
 	}
 }
 if(!isset($_GET['msg'])){
@@ -141,6 +144,11 @@ if(!isset($_GET['msg'])){
 		 $dhlight='1';
 	 break;
  }
+if(!isset($_SESSION['MyUsername'])){
+$btsuerrormsg='无法找到登陆信息。';
+include('intem.php');
+exit;
+}
 $Iusername=$_SESSION['MyUsername'];
 $tmod='MyBtsu';
 include('intem.php');
