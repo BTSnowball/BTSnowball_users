@@ -14,9 +14,7 @@ if(!defined('IN_BTSUE_INS')) {
  <?php
  include('../config/MYSQL_CONFIG.php');
  include('../config/Web_config.php');
-$linka=mysql_connect($mysql_host,$mysql_user,$mysql_pass) or die("数据库连接失败".mysql_error());
-mysql_select_db($mysql_dbname,$linka);
-mysql_query("set names utf8");
+ include('../dorun/Run_Mysql_i.php');
  $lines = file('./include/install.sql');
  foreach ($lines as $line)
 {
@@ -26,7 +24,7 @@ $templine='';
 $templine .= $line;
 if (substr(trim($line), -1, 1) == ';')
 {
-    mysql_query($templine,$linka);
+   mysqli_query($linkai,$templine);
     $templine = '';
 }
 }

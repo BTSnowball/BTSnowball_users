@@ -11,13 +11,13 @@ function QCbh($bh,$dm,$UI,$zt=2){
 $dm=YZdm($dm);
 $bh=intval($bh);
 $zt=intval($zt);
-include('./dorun/Run_Mysql.php');
+include('./dorun/Run_Mysql_i.php');
 if($UI=="1"){
-$sqlbh=mysql_query("SELECT user FROM `".$mysql_head."bh_list` WHERE `ibh`='".$bh."' AND `dm`='".$dm."' AND`zt`='".$zt."' ",$linka);
+$sqlbh=mysqli_query($linkai,"SELECT user FROM `".$mysql_head."bh_list` WHERE `ibh`='".$bh."' AND `dm`='".$dm."' AND`zt`='".$zt."' ");
 }else{
-$sqlbh=mysql_query("SELECT user FROM `".$mysql_head."bh_list` WHERE `ubh`='".$bh."' AND `dm`='".$dm."' AND`zt`='".$zt."' ",$linka);
+$sqlbh=mysqli_query($linkai,"SELECT user FROM `".$mysql_head."bh_list` WHERE `ubh`='".$bh."' AND `dm`='".$dm."' AND`zt`='".$zt."' ");
 }
-if($info=mysql_fetch_object($sqlbh)){
+if($info=mysqli_fetch_object($sqlbh)){
         if($info==""){
 		return 'Faild';
 		}
@@ -38,9 +38,9 @@ function YIyzm($yzm,$bh,$dm,$ss,$zt=100,$safe=1){
 	$ss=intval($ss);
 	$zt=intval($zt);
 	}
-	include('./dorun/Run_Mysql.php');
-	$sqlyz=mysql_query("SELECT id FROM `".$mysql_head."yzm_list` WHERE `yzm`='".$yzm."' AND `ss`='".$ss."' AND `bh`='".$bh."' AND `dm`='".$dm."' AND`zt`='".$zt."' ",$linka);
-	if($info=mysql_fetch_object($sqlyz)){
+	include('./dorun/Run_Mysql_i.php');
+	$sqlyz=mysqli_query($linkai,"SELECT id FROM `".$mysql_head."yzm_list` WHERE `yzm`='".$yzm."' AND `ss`='".$ss."' AND `bh`='".$bh."' AND `dm`='".$dm."' AND`zt`='".$zt."' ");
+	if($info=mysqli_fetch_object($sqlyz)){
 	if($info==""){
 		return 'error!';
 		}
@@ -60,9 +60,9 @@ function YUyzm($yzm,$bh,$dm,$ss,$zt=100,$safe=1){
 	$ss=intval($ss);
 	$zt=intval($zt);
 	}
-	include('./dorun/Run_Mysql.php');
-	$sqlyz=mysql_query("SELECT id FROM `".$mysql_head."u_yzm_list` WHERE `yzm`='".$yzm."' AND `ss`='".$ss."' AND `bh`='".$bh."' AND `dm`='".$dm."' AND`zt`='".$zt."' ",$linka);
-	if($info=mysql_fetch_object($sqlyz)){
+	include('./dorun/Run_Mysql_i.php');
+	$sqlyz=mysqli_query($linkai,"SELECT id FROM `".$mysql_head."u_yzm_list` WHERE `yzm`='".$yzm."' AND `ss`='".$ss."' AND `bh`='".$bh."' AND `dm`='".$dm."' AND`zt`='".$zt."' ");
+	if($info=mysqli_fetch_object($sqlyz)){
 	if($info==""){
 		return 'error!';
 		}

@@ -19,10 +19,7 @@ unset($run);
 if(!defined('IN_BTSUE')){
 define('IN_BTSUE', TRUE);
 }
-include('config/MySQL_CONFIG.php');
-$linka=mysql_connect($mysql_host,$mysql_user,$mysql_pass) or die("数据库连接失败".mysql_error());
-mysql_select_db($mysql_dbname,$linka);
-mysql_query("set names utf8");
+include('./dorun/Run_Mysql_i.php');
 //global $linka;
 	include_once('config/Web_config.php');
 	include_once($WBuHand.'handrun.php');

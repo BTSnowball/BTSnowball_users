@@ -54,21 +54,21 @@ if($userip!="Unknown"){
 	$timenow=time();
 	$timewater=$timenow-360;
 	$userip=fzr($userip);
-	$sqlwater=mysql_query("SELECT `id` FROM `".$mysql_head."waterhub` WHERE `ip`='".$userip."' AND `act`='".$wateract."' AND `date`>='".$timewater."' ",$linka);
+	$sqlwater=mysqli_query($linkai,"SELECT `id` FROM `".$mysql_head."waterhub` WHERE `ip`='".$userip."' AND `act`='".$wateract."' AND `date`>='".$timewater."' ");
 	if(!empty($sqlwater)){
-		$waternum=mysql_num_rows($sqlwater);
+		$waternum=mysqli_num_rows($sqlwater);
 		if($waternum>=4){
 			$doczyzm='1';
             $_SESSION['doczyzm']='1';
 		}
-		mysql_query("insert into ".$mysql_head."waterhub(date,ip,act,username,zt) values('$timenow','$userip','$wateract','$wateruser','1')",$linka);
+		mysqli_query($linkai,"insert into ".$mysql_head."waterhub(date,ip,act,username,zt) values('$timenow','$userip','$wateract','$wateruser','1')");
 	}else{
-		mysql_query("insert into ".$mysql_head."waterhub(date,ip,act,username,zt) values('$timenow','$userip','$wateract','$wateruser','1')",$linka);
+		mysqli_query($linkai,"insert into ".$mysql_head."waterhub(date,ip,act,username,zt) values('$timenow','$userip','$wateract','$wateruser','1')");
 	}
 	if($wateruser!='UNknow'){
-	$sqlwateruser=mysql_query("SELECT `id` FROM `".$mysql_head."waterhub` WHERE `username`='".$wateruser."' AND `act`='".$wateract."' AND `date`>='".$timewater."' ",$linka);
+	$sqlwateruser=mysqli_query($linkai,"SELECT `id` FROM `".$mysql_head."waterhub` WHERE `username`='".$wateruser."' AND `act`='".$wateract."' AND `date`>='".$timewater."' ");
 	if(!empty($sqlwateruser)){
-		$waterusernum=mysql_num_rows($sqlwateruser);
+		$waterusernum=mysqli_num_rows($sqlwateruser);
 		if($waterusernum>=4){
 			$doczyzm='1';
             $_SESSION['doczyzm']='1';

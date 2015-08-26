@@ -61,8 +61,8 @@ switch($doid){
 			echo "empty!7";
 			exit;
 		}
-		$sqlyz=mysql_query("SELECT date FROM `".$mysql_head."bh_list` WHERE `Ibh`='".$Ibh."' AND `zt`='1' AND `user`='".$Cuser."' AND `dm`='".$Udm."' ",$linka);
-	    if($info=mysql_fetch_object($sqlyz)){
+		$sqlyz=mysqli_query($linkai,"SELECT date FROM `".$mysql_head."bh_list` WHERE `Ibh`='".$Ibh."' AND `zt`='1' AND `user`='".$Cuser."' AND `dm`='".$Udm."' ");
+	    if($info=mysqli_fetch_object($sqlyz)){
         if($info==""){
 		echo "error!!";
 		exit;
@@ -88,23 +88,23 @@ switch($doid){
 			echo 'ErrorQX';
 			exit;
 		}
-		if(!(mysql_query("update ".$mysql_head."bh_list set zt='2' where Ibh='".$Ibh."' AND dm='".$Udm."' ",$linka))){
+		if(!(mysqli_query($linkai,"update ".$mysql_head."bh_list set zt='2' where Ibh='".$Ibh."' AND dm='".$Udm."' "))){
 			echo "error1";
 			exit;
 		}
-		if(!(mysql_query("update ".$mysql_head."yzm_list set zt='2' where bh='".$Ibh."' AND ss='1'  ",$linka))){
+		if(!(mysqli_query($linkai,"update ".$mysql_head."yzm_list set zt='2' where bh='".$Ibh."' AND ss='1'  "))){
 			echo "error2";
 			exit;
 		}
-		if(!(mysql_query("update ".$mysql_head."yzm_list set zt='2' where bh='".$Ibh."' AND ss='2' ",$linka))){
+		if(!(mysqli_query($linkai,"update ".$mysql_head."yzm_list set zt='2' where bh='".$Ibh."' AND ss='2' "))){
 			echo "error3";
 			exit;
 		}
-		if(!(mysql_query("update ".$mysql_head."yzm_list set zt='2' where bh='".$Ibh."' AND ss='3' ",$linka))){
+		if(!(mysqli_query($linkai,"update ".$mysql_head."yzm_list set zt='2' where bh='".$Ibh."' AND ss='3' "))){
 			echo "error4";
 			exit;
 		}
-		if(!(mysql_query("update ".$mysql_head."yzm_list set zt='2' where bh='".$Ibh."' AND ss='4' ",$linka))){
+		if(!(mysqli_query($linkai,"update ".$mysql_head."yzm_list set zt='2' where bh='".$Ibh."' AND ss='4' "))){
 			echo "error5";
 			exit;
 		}

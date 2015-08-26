@@ -155,7 +155,7 @@ function inject_check($sql_str)
 {
    return preg_match('/select|insert|update|delete|\’|\`|\/\*|\*|\.\.\/|\.\/|union|into|load_file|outfile/i', $sql_str);     // 进行关键字过滤
 }
-function fzr($str,$bm='UTF-8') {   //简单粗暴,但如果不在判定范围内必须指定。请各位开发者注意
+function fzro($str,$bm='UTF-8') {   //简单粗暴,但如果不在判定范围内必须指定。请各位开发者注意
 $encode = mb_detect_encoding( $str, array('ASCII','UTF-8','GB2312','GBK','BIG5','JIS'));
 if ( !$encode =='UTF-8' ){
 if($encode!=FALSE){
@@ -178,7 +178,7 @@ $str=str_replace("_","\_",$str);
 $str=str_replace("%","\%",$str);
 return $str; 
 }
-function fzri($str,$bm='UTF-8') {   //简单粗暴,但如果不在判定范围内必须指定。请各位开发者注意
+function fzr($str,$bm='UTF-8') {   //简单粗暴,但如果不在判定范围内必须指定。请各位开发者注意
 $encode = mb_detect_encoding( $str, array('ASCII','UTF-8','GB2312','GBK','BIG5','JIS'));
 if ( !$encode =='UTF-8' ){
 if($encode!=FALSE){

@@ -134,9 +134,9 @@ if(!isset($_GET['page'])){
 	$nuba=$page*30-30;
 	$nubb=30;
 }
-$sqllist=mysql_query("SELECT * FROM `".$mysql_head."userzt` limit ".$nuba.",".$nubb." ",$linka);
+$sqllist=mysqli_query($linkai,"SELECT * FROM `".$mysql_head."userzt` limit ".$nuba.",".$nubb." ");
 $dolist='1';
-if($infolist=mysql_fetch_object($sqllist)){
+if($infolist=mysqli_fetch_object($sqllist)){
         if($infolist==""){
 		echo '没有更多记录！';
 		$dolist='2';
@@ -214,7 +214,7 @@ if($zt=='1'){
   </tr>
 <?php
 $donum=$donum+1;
-}while($infolist=mysql_fetch_object($sqllist));
+}while($infolist=mysqli_fetch_object($sqllist));
 ?>
 </table>
 <button type="button" class="btn btn-default" name="checkall">全选</button>

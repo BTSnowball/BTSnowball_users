@@ -21,9 +21,9 @@ if(isset($_GET['do'])){
 			$oldpassword=md5(trim($_POST['opm']));
 		    $newpassword=md5(trim($_POST['npm']));
 			$adminusername=trim($_SESSION['AdminBtsuU']);
-			$sqladminc=mysql_query("SELECT * FROM `".$mysql_head."admin` WHERE `adminname`='".$adminusername."' AND `zt`='1' ",$linka);
+			$sqladminc=mysqli_query($linkai,"SELECT * FROM `".$mysql_head."admin` WHERE `adminname`='".$adminusername."' AND `zt`='1' ");
 $adminuscc='2';
-if($infoadminc=mysql_fetch_object($sqladminc)){
+if($infoadminc=mysqli_fetch_object($sqladminc)){
 	if($infoadminc==""){
 		}else{
 			$infopassc=$infoadminc->password;
@@ -44,7 +44,7 @@ if($infoadminc=mysql_fetch_object($sqladminc)){
 	}
 	unset($dow);
 	if($adminuscc==='1'){
-		mysql_query("update ".$mysql_head."admin set password='".$newpassword."' where adminname='".$adminusername."' ",$linka);
+		mysqli_query($linkai,"update ".$mysql_head."admin set password='".$newpassword."' where adminname='".$adminusername."' ");
 		echo '更改成功';
 	}
 }

@@ -161,13 +161,13 @@ switch($doid){
 			//&backurl="+window.location.href二次开发根据需要或可改动
 		}else{
 			$tmod='BUError';
-	        $btsuerrormsg='Error!-通信失败#0000A001';
+	        $btsuerrormsg='Error!-通信失败#0000A001'.$yzjg;
 			include('intem.php');
-			mysql_query("DELETE FROM ".$mysql_head."bh_list  where Ibh='".$bh."' AND dm='".$lidomain."' ",$linka);
-			mysql_query("DELETE FROM ".$mysql_head."yzm_list  where bh='".$bh."' AND yzm='".$yzma."' ",$linka);
-			mysql_query("DELETE FROM ".$mysql_head."yzm_list  where bh='".$bh."' AND yzm='".$yzmb."' ",$linka);
-			mysql_query("DELETE FROM ".$mysql_head."yzm_list  where bh='".$bh."' AND yzm='".$yzmc."' ",$linka);
-			mysql_query("DELETE FROM ".$mysql_head."yzm_list  where bh='".$bh."' AND yzm='".$yzmd."' ",$linka);
+			mysqli_query($linkai,"DELETE FROM ".$mysql_head."bh_list  where Ibh='".$bh."' AND dm='".$lidomain."' ");
+			mysqli_query($linkai,"DELETE FROM ".$mysql_head."yzm_list  where bh='".$bh."' AND yzm='".$yzma."' ");
+			mysqli_query($linkai,"DELETE FROM ".$mysql_head."yzm_list  where bh='".$bh."' AND yzm='".$yzmb."' ");
+			mysqli_query($linkai,"DELETE FROM ".$mysql_head."yzm_list  where bh='".$bh."' AND yzm='".$yzmc."' ");
+			mysqli_query($linkai,"DELETE FROM ".$mysql_head."yzm_list  where bh='".$bh."' AND yzm='".$yzmd."' ");
 			exit;
 		}
 	break;
