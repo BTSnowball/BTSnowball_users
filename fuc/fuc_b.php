@@ -44,6 +44,7 @@ $bh=intval($bh);
 $zt=intval($zt);
 }
 include('./dorun/Run_Mysql_i.php');
+$dm=mysqli_real_escape_string($linkai,$dm);
 $sqlyz=mysqli_query($linkai,"SELECT id FROM `".$mysql_head."bh_list` WHERE `ibh`='".$bh."' AND `dm`='".$dm."' AND`zt`='".$zt."' ");
 	if($info=mysqli_fetch_object($sqlyz)){
         if($info==""){
@@ -212,6 +213,7 @@ function UPbh($Ibh,$Ubh,$dm,$safe=1){
 	$dm=YZdm($dm);
 	}
 	include('./dorun/Run_Mysql_i.php');
+		$dm=mysqli_real_escape_string($linkai,$dm);
 	mysqli_query($linkai,"update ".$mysql_head."bh_list set Ubh='".$Ubh."' where Ibh='".$Ibh."' AND dm='".$dm."' ");
 }
 function SZIbh($zt,$Ibh,$dm,$safe=1){
@@ -221,6 +223,7 @@ function SZIbh($zt,$Ibh,$dm,$safe=1){
 	$dm=YZdm($dm);
 	}
 	include('./dorun/Run_Mysql_i.php');
+		$dm=mysqli_real_escape_string($linkai,$dm);
 	mysqli_query($linkai,"update ".$mysql_head."bh_list set zt='".$zt."' where Ibh='".$Ibh."' AND dm='".$dm."' ");
 }
 function SURIbh($dourl,$apiurl,$Ibh,$dm,$URLrep='http://',$safe=1){
@@ -232,6 +235,10 @@ function SURIbh($dourl,$apiurl,$Ibh,$dm,$URLrep='http://',$safe=1){
 	$dm=YZdm($dm);
 	}
 	include('./dorun/Run_Mysql_i.php');
+	$dm=mysqli_real_escape_string($linkai,$dm);
+	$dourl=mysqli_real_escape_string($linkai,$dourl);
+	$apiurl=mysqli_real_escape_string($linkai,$apiurl);
+	$URLrep=mysqli_real_escape_string($linkai,$URLrep);
 	mysqli_query($linkai,"update ".$mysql_head."bh_list set `dourl` =  '".$dourl."',
 `apiurl` =  '".$apiurl."' where Ibh='".$Ibh."' AND dm='".$dm."' AND urlrep='".$URLrep."' ");
 }
@@ -241,6 +248,7 @@ function DELbh($Ibh,$dm,$safe=1){
 	$Ibh=intval($Ibh);
 	}
 	include('./dorun/Run_Mysql_i.php');
+	$dm=mysqli_real_escape_string($linkai,$dm);
     mysqli_query($linkai,"DELETE FROM ".$mysql_head."bh_list  where Ibh='".$Ibh."' AND dm='".$dm."' ");
 }
 function Cyzm($dm,$bh,$safe=1){
@@ -252,6 +260,7 @@ function Cyzm($dm,$bh,$safe=1){
 		return "error";
 	}
 	include('./dorun/Run_Mysql_i.php');
+	$dm=mysqli_real_escape_string($linkai,$dm);
 	$cs=1;
 	do{
 	$yzm=rand(999999,999999999);
@@ -279,6 +288,7 @@ function WUyzm($ss,$bh,$yzm,$dm,$safe=1){
 	}
 	$date=time();
 	include('./dorun/Run_Mysql_i.php');
+	$dm=mysqli_real_escape_string($linkai,$dm);
 	mysqli_query($linkai,"insert into ".$mysql_head."u_yzm_list(ss,bh,yzm,date,zt,dm) values('$ss','$bh','$yzm','$date','2','$dm')");
 }
 function CKUyzm($bh,$dm,$zt=2,$yzm=0,$safe=1){ //二次开发勿删yzm，后续版本有用以作提醒
@@ -288,6 +298,7 @@ function CKUyzm($bh,$dm,$zt=2,$yzm=0,$safe=1){ //二次开发勿删yzm，后续�
 	$zt=intval($zt);
 	}
 	include('./dorun/Run_Mysql_i.php');
+	$dm=mysqli_real_escape_string($linkai,$dm);
 	$sqlyz=mysqli_query($linkai,"SELECT * FROM `".$mysql_head."u_yzm_list` WHERE `bh`='".$bh."' AND `dm`='".$dm."' AND`zt`='".$zt."' ");
 	if($info=mysqli_fetch_object($sqlyz)){
 	if($info==""){
@@ -331,6 +342,7 @@ function CKIyzm($bh,$dm,$zt=2,$yzm=0,$safe=1){
 	$zt=intval($zt);
 	}
 	include('./dorun/Run_Mysql_i.php');
+	$dm=mysqli_real_escape_string($linkai,$dm);
 	$sqlyz=mysqli_query($linkai,"SELECT * FROM `".$mysql_head."yzm_list` WHERE `bh`='".$bh."' AND `dm`='".$dm."' AND`zt`='".$zt."' ");
 	if($info=mysqli_fetch_object($sqlyz)){
 	if($info==""){
@@ -400,6 +412,8 @@ function JXUxq($Uxq,$zt=1,$hand='all',$safe=1){
 	$hand=fzr($hand);
 	}
 	include('./dorun/Run_Mysql_i.php');
+	$hand=mysqli_real_escape_string($linkai,$hand);
+	$Uxq=mysqli_real_escape_string($linkai,$Uxq);
 	$sqlxq=mysqli_query($linkai,"SELECT * FROM `".$mysql_head."qxlist` WHERE `cname`='".$Uxq."' AND `hand`='".$hand."' AND`zt`='".$zt."' ");
 	if($info=mysqli_fetch_object($sqlxq)){
 	if($info==""){
@@ -428,6 +442,8 @@ function SETres($Ibh,$key,$value,$zt=1,$safe=1){
 	}
 	$date=time();
 	include('./dorun/Run_Mysql_i.php');
+	$key=mysqli_real_escape_string($linkai,$key);
+	$val=mysqli_real_escape_string($linkai,$val);
 	$sqlwater=mysqli_query($linkai,"SELECT `id` FROM `".$mysql_head."reslist` WHERE `Ibh`='".$Ibh."' AND `key`='".$key."' AND `val`='".$val."' ");
 	if(!empty($sqlwater)){
 		$waternum=mysqli_num_rows($sqlwater);
@@ -445,6 +461,7 @@ $zt=intval($zt);
 $cs=intval($cs);
 }
 include('./dorun/Run_Mysql_i.php');
+$key=mysqli_real_escape_string($linkai,$key);
 $sqlres=mysqli_query($linkai,"SELECT `val`,`date` FROM `".$mysql_head."reslist` WHERE `Ibh`='".$bh."' AND `key`='".$key."' AND`zt`='".$zt."' ORDER BY  `".$mysql_head."reslist`.`id` ASC  ");
 if($info=mysqli_fetch_object($sqlres)){
         if($info==""){
@@ -477,6 +494,8 @@ function IINreg($username,$dm,$safe=1){
 	$dm=YZdm($dm);
 	}
 	include('./dorun/Run_Mysql_i.php');
+	$username=mysqli_real_escape_string($linkai,$username);
+	$dm=mysqli_real_escape_string($linkai,$dm);
     $sqlnr=mysqli_query($linkai,"SELECT `Iusername`,`zt` FROM `".$mysql_head."userzt` WHERE `Uusername`='".$username."' AND `dm`='".$dm."' AND `from`='2' ");
     if($info=mysqli_fetch_object($sqlnr)){
         if($info==""){
@@ -509,6 +528,10 @@ function SETuzt($Iusername,$Uusername,$dm,$from,$zt=1,$Iuid,$mmzt,$email,$safe=1
 		$mmzt=intval($mmzt);
 	}
 	include('./dorun/Run_Mysql_i.php');
+	$Iusername=mysqli_real_escape_string($linkai,$Iusername);
+	$Uusername=mysqli_real_escape_string($linkai,$Uusername);
+	$email=mysqli_real_escape_string($linkai,$email);
+	$dm=mysqli_real_escape_string($linkai,$dm);
 	mysqli_query($linkai,"INSERT INTO  `".$mysql_head."userzt` (`Iusername`,`dm`,`from`,`zt`,`Uusername`,`Iuid`,`mmzt`,`email`)VALUES ('$Iusername','$dm','$from','$zt','$Uusername','$Iuid','$mmzt','$email')");
 }
 //危险函数，请先过滤后调用
@@ -555,6 +578,7 @@ function IINTSet($Iusername,$dm,$safe=1){
 	    return $cnr;
 	}
 	include('./dorun/Run_Mysql_i.php');
+	$dm=mysqli_real_escape_string($linkai,$dm);
     $sqlnr=mysqli_query($linkai,"SELECT `zt` FROM `".$mysql_head."userzt` WHERE `Iusername`='".$Iusername."' AND `dm`='".$dm."' AND `from`='1' ");
     if($info=mysqli_fetch_object($sqlnr)){
         if($info==""){
@@ -584,6 +608,7 @@ function IFRTSet($Uusername,$dm,$safe=1){
 	    return $cnr;
 	}
 	include('./dorun/Run_Mysql_i.php');
+	$dm=mysqli_real_escape_string($linkai,$dm);
     $sqlnr=mysqli_query($linkai,"SELECT `zt` FROM `".$mysql_head."userzt` WHERE `Uusername`='".$Uusername."' AND `dm`='".$dm."' AND `from`='2' ");
     if($info=mysqli_fetch_object($sqlnr)){
         if($info==""){
@@ -609,6 +634,7 @@ function IINFSet($dm,$from,$safe=1){
 	$from=intval($from);
 	}
 	include('./dorun/Run_Mysql_i.php');
+	$dm=mysqli_real_escape_string($linkai,$dm);
     $sqlnr=mysqli_query($linkai,"SELECT `zt` FROM `".$mysql_head."w_friend` WHERE `wdomain`='".$dm."' AND `from`='".$from."'");
     if($info=mysqli_fetch_object($sqlnr)){
         if($info==""){
@@ -637,6 +663,8 @@ function SETfriend($Uwname,$wdomain,$from,$zt=1,$safe=1){
 	}
 	$date=time();
 	include('./dorun/Run_Mysql_i.php');
+	$dm=mysqli_real_escape_string($linkai,$dm);
+	$Uwname=mysqli_real_escape_string($linkai,$Uwname);
 	mysqli_query($linkai,"INSERT INTO  `".$mysql_head."w_friend` (`wname`,`wdomain`,`zt`,`date`,`from`)VALUES ('$Uwname','$wdomain','$zt','$date','$from')");
 }
 function QCFriend($dm,$from,$safe=1){
@@ -645,6 +673,7 @@ function QCFriend($dm,$from,$safe=1){
 	$from=intval($from);
 	}
 	include('./dorun/Run_Mysql_i.php');
+	$dm=mysqli_real_escape_string($linkai,$dm);
     $sqlnr=mysqli_query($linkai,"SELECT * FROM `".$mysql_head."w_friend` WHERE `wdomain`='".$dm."' AND `from`='".$from."'");
     if($info=mysqli_fetch_object($sqlnr)){
         if($info==""){
@@ -697,6 +726,8 @@ function QCBDUser($usermasg,$mid,$dm,$safe=1){
 	}
 	}
 	include('./dorun/Run_Mysql_i.php');
+	$dm=mysqli_real_escape_string($linkai,$dm);
+	$Iusername=mysqli_real_escape_string($linkai,$Iusername);
 	if($dm!='none'){
 	$sqluz=mysqli_query($linkai,"SELECT * FROM `".$mysql_head."userzt` WHERE ".$bg."='".$usermasg."' AND `dm`='".$dm."' ");
 	}else{
@@ -730,6 +761,7 @@ function CIucookie($ckeya,$ckeyb,$username,$date,$zt=1,$safe=1){
 		$zt=intval($zt);
 	}
 	include('./dorun/Run_Mysql_i.php');
+	$username=mysqli_real_escape_string($linkai,$username);
 	mysqli_query($linkai,"insert into ".$mysql_head."cookie(ckeya,ckeyb,date,username,zt) values('$ckeya','$ckeyb','$date','$username','$zt')");
 }
 function CKucookie($ckeya,$ckeyb,$username,$zt=1,$safe=1){
@@ -740,6 +772,7 @@ if($safe!=0){
 		$zt=intval($zt);
 	}
 include('./dorun/Run_Mysql_i.php');
+$username=mysqli_real_escape_string($linkai,$username);
 $sqlyz=mysqli_query($linkai,"SELECT date,username FROM `".$mysql_head."cookie` WHERE `ckeya`='".$ckeya."' AND `ckeyb`='".$ckeyb."' AND `username`='".$username."' AND`zt`='".$zt."' ");
 	if($info=mysqli_fetch_object($sqlyz)){
         if($info==""){
@@ -788,6 +821,10 @@ function NewGoodFri($wname,$wdomain,$rank,$zt,$from,$ly,$bz,$safe=1){
 	}
 	$date=time();
 	include('./dorun/Run_Mysql_i.php');
+	$wname=mysqli_real_escape_string($linkai,$wname);
+	$wdomain=mysqli_real_escape_string($linkai,$wdomain);
+	$ly=mysqli_real_escape_string($linkai,$ly);
+	$bz=mysqli_real_escape_string($linkai,$bz);
     mysqli_query($linkai,"INSERT INTO  `".$mysql_head."w_goodfriend` (`wname`,`wdomain`,`rank`,`zt`,`date`,`from`,`ly`,`bz`)VALUES ('$wname','$wdomain','$rank','$zt','$date','$from','$ly','$bz')");
 }
 function StopFri($id,$safe=1){
@@ -822,6 +859,9 @@ function NewFri($wname,$wdomain,$rank,$zt,$from,$safe=1,$txt='none'){
 	}
 	$date=time();
 	include('./dorun/Run_Mysql_i.php');
+	$wdomain=mysqli_real_escape_string($linkai,$wdomain);
+	$wname=mysqli_real_escape_string($linkai,$wname);
+	$txt=mysqli_real_escape_string($linkai,$txt);
     mysqli_query($linkai,"INSERT INTO  `".$mysql_head."w_friend` (`wname`,`wdomain`,`rank`,`zt`,`date`,`from`,`txt`)VALUES ('$wname','$wdomain','$rank','$zt','$date','$from','$txt')");
 }
 function IsFri($wdomain,$from,$safe=1){
@@ -830,6 +870,7 @@ function IsFri($wdomain,$from,$safe=1){
 	$from=intval($from);
 	}
 	include('./dorun/Run_Mysql_i.php');
+	$wdomain=mysqli_real_escape_string($linkai,$wdomain);
 	 $sqljc=mysqli_query($linkai,"SELECT `zt` FROM `".$mysql_head."w_friend` WHERE `wdomain`='".$wdomain."' AND `from`='".$from."' ");
     if($info=mysqli_fetch_object($sqljc)){
         if(isset($info->zt)){
@@ -966,6 +1007,10 @@ function NewZCloud($name,$api,$url,$rank,$zt,$zb,$ms,$safe=1){
 	$ms=fzr($ms);
 	}
 	include('./dorun/Run_Mysql_i.php');
+	$name=mysqli_real_escape_string($linkai,$name);
+	$api=mysqli_real_escape_string($linkai,$api);
+	$url=mysqli_real_escape_string($linkai,$url);
+	$ms=mysqli_real_escape_string($linkai,$ms);
     mysqli_query($linkai,"INSERT INTO  `".$mysql_head."zcloud` (`name`,`api`,`url`,`rank`,`zt`,`zb`,`ms`)VALUES ('$name','$api','$url','$rank','$zt','$zb','$ms')");
 }
 function DelWBlack($id,$safe=1){
@@ -987,6 +1032,9 @@ function NewWBlack($wname,$wdomain,$rank,$zt,$from,$text,$ly=0,$safe=1){
 	}
 	$date=time();
 	include('./dorun/Run_Mysql_i.php');
+	$wname=mysqli_real_escape_string($linkai,$wname);
+	$wdomain=mysqli_real_escape_string($linkai,$wdomain);
+	$text=mysqli_real_escape_string($linkai,$text);
     mysqli_query($linkai,"INSERT INTO  `".$mysql_head."w_black` (`wname`,`wdomain`,`rank`,`zt`,`date`,`from`,`text`,`ly`)VALUES ('$wname','$wdomain','$rank','$zt','$date','$from','$text','$ly')");
 }
 function IsWBlack($dm,$from,$safe=1){
@@ -1000,6 +1048,7 @@ function IsWBlack($dm,$from,$safe=1){
 		$doaf=2;
 	}
 	include('./dorun/Run_Mysql_i.php');
+	$dm=mysqli_real_escape_string($linkai,$dm);
 	 $sqljc=mysqli_query($linkai,"SELECT `zt` FROM `".$mysql_head."w_black` WHERE `wdomain`='".$dm."' AND `from`='3'");
     if($info=mysqli_fetch_object($sqljc)){
         if(isset($info->zt)){
@@ -1059,6 +1108,9 @@ function NewEBlack($email,$text,$zt,$update,$ly=0,$safe=1){
 	}
 	$date=time();
 	include('./dorun/Run_Mysql_i.php');
+	$email=mysqli_real_escape_string($linkai,$email);
+	$update=mysqli_real_escape_string($linkai,$update);
+	$text=mysqli_real_escape_string($linkai,$text);
     mysqli_query($linkai,"INSERT INTO  `".$mysql_head."e_black` (`email`,`text`,`zt`,`date`,`update`,`ly`)VALUES ('$email','$text','$zt','$date','$update','$ly')");
 }
 function IsEBlack($address,$safe=1){
@@ -1066,6 +1118,7 @@ function IsEBlack($address,$safe=1){
 	$address=fzr($address);
 	}
 	include('./dorun/Run_Mysql_i.php');
+	$address=mysqli_real_escape_string($linkai,$address);
 	 $sqljc=mysqli_query($linkai,"SELECT `zt` FROM `".$mysql_head."e_black` WHERE `email`='".$address."'");
     if($info=mysqli_fetch_object($sqljc)){
         if(isset($info->zt)){
@@ -1079,6 +1132,7 @@ function IsECanStop($email,$safe=1){ //未完成！！！！！
 	$email=fzr($email);
 	}
 	include('./dorun/Run_Mysql_i.php');
+	$email=mysqli_real_escape_string($linkai,$email);
 	 $sqljc=mysqli_query($linkai,"SELECT `id` FROM `".$mysql_head."userzt` WHERE `email`='".$address."'");
     if($info=mysqli_fetch_object($sqljc)){
         if(!isset($info->id)){
@@ -1099,6 +1153,7 @@ function IsBelive($dm,$Iuid,$safe=1){
 	$Iuid=intval($Iuid);
 	}
 	include('./dorun/Run_Mysql_i.php');
+	$dm=mysqli_real_escape_string($linkai,$dm);
 	$sqljc=mysqli_query($linkai,"SELECT `id` FROM `".$mysql_head."btsu_w_belivelist` WHERE `wdomain`='".$dm."' AND `zt`='1' ");
 	if(!empty($sqljc)){
 	  if($info=mysqli_fetch_object($sqljc)){
@@ -1138,6 +1193,7 @@ function NewBelive($dm,$wname,$rank=1,$zt=2,$safe=1){
 	}
 	$date=time();
 	include('./dorun/Run_Mysql_i.php');
+	$dm=mysqli_real_escape_string($linkai,$dm);
     mysqli_query($linkai,"INSERT INTO  `".$mysql_head."w_belivelist` (`wname`,`wdomain`,`rank`,`zt`,`date``)VALUES ('$wname','$dm','$rank','$zt','$date')");
 }
 function SetBelive($email,$dm,$isbelive,$zt=1,$safe=1){
@@ -1150,6 +1206,8 @@ function SetBelive($email,$dm,$isbelive,$zt=1,$safe=1){
 	}
 	$date=time();
 	include('./dorun/Run_Mysql_i.php');
+	$dm=mysqli_real_escape_string($linkai,$dm);
+	$email=mysqli_real_escape_string($linkai,$email);
     mysqli_query($linkai,"update `".$mysql_head."btsu_userzt` set `isbelive`='".$isbelive."' where `email`='".$email."' AND `dm`='".$dm."' AND `from`='2' AND `zt`='".$zt."' ");
 }
 function DelBelive($dm,$safe=1){
@@ -1159,5 +1217,6 @@ function DelBelive($dm,$safe=1){
 	}
 	$date=time();
 	include('./dorun/Run_Mysql_i.php');
+	$dm=mysqli_real_escape_string($linkai,$dm);
     mysqli_query($linkai,"DELETE FROM `".$mysql_head."w_belivelist`  where `dm`='".$dm."' ");
 }
