@@ -749,6 +749,7 @@ function QCBDUser($usermasg,$mid,$dm,$safe=1){
 	$remsg['zt']=$info->zt;
 	$remsg['from']=$info->from;
 	$remsg['Id']=$info->id;
+	$remsg['email']=$info->email;
 	$remsg['jg']='Success';
 	return $remsg;
 }
