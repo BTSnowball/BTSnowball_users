@@ -1,9 +1,9 @@
--- phpMyAdmin SQL Dump
--- version phpStudy 2014
+--- phpMyAdmin SQL Dump
+-- version 2014
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2015 年 08 月 12 日 00:17
+-- 生成日期: 2015 年 09 月 06 日 14:29
 -- 服务器版本: 5.5.38
 -- PHP 版本: 5.4.29
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- 数据库: `dbmyi`
+-- 数据库: `btsuinstall`
 --
 
 -- --------------------------------------------------------
@@ -223,7 +223,7 @@ CREATE TABLE IF NOT EXISTS `btsu_waterhub` (
 --
 
 CREATE TABLE IF NOT EXISTS `btsu_w_belivelist` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `wname` varchar(200) NOT NULL DEFAULT 'Unkonw',
   `wdomain` varchar(200) NOT NULL,
   `rank` int(11) NOT NULL DEFAULT '1',
@@ -232,7 +232,7 @@ CREATE TABLE IF NOT EXISTS `btsu_w_belivelist` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   KEY `id_2` (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=gbk;
+) ENGINE=MyISAM DEFAULT CHARSET=gbk AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -285,15 +285,7 @@ CREATE TABLE IF NOT EXISTS `btsu_w_friend` (
 --
 
 INSERT INTO `btsu_w_friend` (`id`, `wname`, `wdomain`, `rank`, `fz`, `zt`, `date`, `from`, `txt`, `sync`) VALUES
-(1, 'BTSnowball', 'uhub.cloud.btsnowball.org', 1, 1, 1, 1426434811, 1, 'none', 1),
-(29, 'BTSUTEST-SA', 'BTSA.GEILI.IN', 1, 0, 1, 1438580835, 1, 'none', 1),
-(28, 'BTSUTEST-SA', 'btsa.geili.in', 1, 0, 1, 1438577848, 2, 'none', 1),
-(30, 'BTSnowball_Users_PHPWINDExample', 'pwdemo.btsnowball.com', 1, 0, 1, 1438589221, 1, 'none', 1),
-(31, 'BTSnowball_Users_WordpressExample', 'wpdemo.btsnowball.net', 1, 0, 1, 1438607906, 1, 'none', 1),
-(32, 'BTSUTEST-D', 'buch.geili.in', 1, 0, 1, 1438617463, 2, 'none', 1),
-(33, 'BTSnowball_Users_PHPWINDExample', 'pwdemo.btsnowball.com', 1, 0, 1, 1438617679, 2, 'none', 1),
-(34, 'BTSnowball\\_Users\\_WordpressExample', 'wpdemo.btsnowball.net', 1, 0, 1, 1438697139, 2, 'none', 1),
-(35, 'TIEBA\\_A\\_DEMO', 'tiebaa.btsnowball.com', 1, 0, 1, 1438881031, 1, 'none', 1);
+(1, 'BTSnowball', 'uhub.cloud.btsnowball.org', 1, 1, 1, 1426434811, 1, 'none', 1);
 
 -- --------------------------------------------------------
 
@@ -369,3 +361,4 @@ INSERT INTO `btsu_zcloud` (`id`, `url`, `api`, `name`, `ms`, `zt`, `zb`, `rank`)
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
