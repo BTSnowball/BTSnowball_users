@@ -234,8 +234,7 @@ switch($doid){
 	    $Ibh=UIbh($Ubh,2,2);
 		$bhmsg=BtsQbh($Ibh,1,2,2);
 		if($bhmsg["jg"]=="Faild"){
-			echo "bhfaild";
-			exit;
+			exit('bhfaild');
 		}
 		$Udm=$bhmsg["dm"];
 		$Uuser=$bhmsg["user"];
@@ -292,16 +291,14 @@ switch($doid){
 		exit;
 		}
 		if(!is_array($_POST["POST_ARY"])){
-		echo 'BTSuser:Error:BTsuserover';
-		exit;
+		exit('BTSuser:Error:BTsuserover');
 		}
 	    }
 		$Ubh=$_GET["bh"];
 	    $Ibh=UIbh($Ubh,2);
 		$bhmsg=BtsQbh($Ibh,1,2,2);
 		if($bhmsg["jg"]=="Faild"){
-			echo "bhfaild";
-			exit;
+			exit('bhfaild');
 		}
 		$Udm=$bhmsg["dm"];
 		$etime=CKTUbh($Ubh,2,2);
@@ -316,8 +313,7 @@ switch($doid){
 			}
 		$Iyzm=CKIyzm($Ibh,$Udm);
 		if($Iyzm['Debug']!='Success'){
-			echo 'ErrorIY!';
-			exit;
+			exit('ErrorIY!');
 			}
 		$ToKen=sha1(md5($Uyzm['yzma'].$Uyzm['yzmc']).md5($Iyzm['yzma'].$Iyzm['yzmc'].$Ibh));
 		if($ToKen!=trim($_GET['ToKen'])){
